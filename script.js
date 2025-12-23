@@ -57,10 +57,10 @@ const skillObserver = new IntersectionObserver((entries) => {
         if (entry.isIntersecting) {
             const progressBar = entry.target.querySelector('.skill-progress');
             if (progressBar) {
-                const width = progressBar.style.width;
+                const targetWidth = window.getComputedStyle(progressBar).width;
                 progressBar.style.width = '0';
                 setTimeout(() => {
-                    progressBar.style.width = width;
+                    progressBar.style.width = targetWidth;
                 }, 100);
             }
             skillObserver.unobserve(entry.target);
@@ -164,10 +164,11 @@ console.log('%cWelcome to my portfolio! Feel free to explore the code.', 'font-s
 
 // Easter egg: Konami code
 let konamiCode = [];
-const konamiPattern = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
+const konamiPattern = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'KeyB', 'KeyA'];
 
 document.addEventListener('keydown', (e) => {
-    konamiCode.push(e.key);
+    // Use e.code for consistent key identification
+    konamiCode.push(e.code);
     konamiCode = konamiCode.slice(-10);
     
     if (konamiCode.join(',') === konamiPattern.join(',')) {

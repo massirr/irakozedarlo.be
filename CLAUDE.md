@@ -1,23 +1,29 @@
 # CLAUDE.md
 
-Personal portfolio for Massirr, served by GitHub Pages from the root of this
-repo. Plain static site — no build step, no framework, no dependencies.
+Personal portfolio for Irakoze Darlo (GitHub: massirr), served by GitHub
+Pages from the root of this repo. Plain static site — no build step, no
+framework, no dependencies.
 
 ## Files
 
 - `index.html` — single-page portfolio (hero, about, skills, projects, contact, footer)
 - `styles.css` — all styling; the design system lives here as CSS custom properties on `:root`
-- `script.js` — vanilla JS: smooth scroll, fade-in on scroll, skill bars, active nav link, contact form stub
+- `script.js` — vanilla JS: smooth scroll, fade-in on scroll, active nav link
 
 To preview locally, open `index.html` in a browser or run `python3 -m http.server`.
 
-## Current state: design set, content pending
+## Current state
 
-The visual design is done. **All copy is placeholder** — sections are marked
-with `<!-- PLACEHOLDER CONTENT -->` comments in `index.html`. When real
-content is decided (bio, skills, projects, stats, contact details), replace
-the placeholders without changing the structure or styling. The contact form
-has no backend; the submit handler in `script.js` is a stub.
+Design and structure are set. Copy is a first draft written from the public
+GitHub profile (github.com/massirr) — sections carry `<!-- DRAFT COPY -->`
+comments where wording should be verified by the owner. Deliberate content
+decisions (do not reintroduce these):
+
+- **No emojis** — icons are replaced by typographic labels and monogram initials.
+- **No skill percentage bars** — skills are flat chip lists, no invented numbers.
+- **No stat cards** ("X years experience" etc.).
+- **No contact form** — there is no backend; contact is a `mailto:` CTA plus
+  direct links (email, LinkedIn, GitHub).
 
 ## Design system: hard-shadow style
 
@@ -29,18 +35,22 @@ styling, obey these rules — they are what make the design coherent:
   `5px 5px 0` below 720px. Defined as `--shadow` / `--shadow-sm`.
 - **Zero blur, zero spread, full-opacity ink.** Never soften it.
 - Offset is always down-right; never mix directions.
-- Not everything gets a shadow: chips, tags, and section-title headings stay
-  flat. The contrast between shadowed cards and flat elements IS the hierarchy.
+- Not everything gets a shadow: chips, tags, skill-list items, contact links,
+  and section-title headings stay flat. The contrast between shadowed cards
+  and flat elements IS the hierarchy.
 - Buttons have a pressed state: `:active` translates toward the shadow and
   shrinks the offset.
 
-### Corners and colors
+### Corners and colors — slate blue palette
 - `border-radius: 0` everywhere. No exceptions — one rounded corner breaks the style.
-- One ink color (`--ink`, near-black warm neutral) drives text, borders,
-  shadows, and primary buttons.
-- Palette is limited to ink, paper (`--paper`, tinted off-white), one accent
-  (`--accent` tan / `--paper-strong` gold), plus semantic green/red only for
+- One ink color drives text, borders, shadows, and primary buttons:
+  `--ink: #16191e` (near-black, cool cast).
+- Palette: paper `#f2f4f1` (cool off-white), accent `#b9c8d8` (dusty powder
+  blue, card surfaces), highlight `--paper-strong: #7ea8cc` (slate blue —
+  chips, tags, monograms, text-on-ink), plus semantic green/red reserved for
   correct/incorrect states. Do not introduce new hues.
+- This palette was chosen deliberately to differ from the StudyApp repo's
+  tan/gold. Keep it cool-toned.
 - Surfaces are translucent (`--surface*` tokens) so the layered page
   background glows through.
 
@@ -52,6 +62,8 @@ styling, obey these rules — they are what make the design coherent:
   background, `0.45rem 0.8rem` padding.
 - Labels: 0.8rem, weight 650, uppercase, `letter-spacing: 0.05em`.
 - Weights skew heavy (600–700) for anything interactive.
+- Project cards use a large typographic initial (`.project-initial`) instead
+  of thumbnail images.
 
 ### Motion
 - `transition: transform 0.18s ease, background-color 0.18s ease` — nothing longer.
@@ -63,6 +75,5 @@ styling, obey these rules — they are what make the design coherent:
 
 ### Layout
 - Content width `min(100%, 1200px)`; card grids
-  `repeat(auto-fill, minmax(280px, 1fr))` gap 20px; stat rows
-  `minmax(140px, 1fr)` gap 16px.
+  `repeat(auto-fill, minmax(280px, 1fr))` gap 20px.
 - Spacing in multiples of 4. Breakpoints at 720px and 480px.

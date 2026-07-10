@@ -22,6 +22,13 @@
     --paper-strong: #7ea8cc;
     --accent: #b9c8d8;
 
+    /* Warm companions to the blue — muted, same chalky tone family.
+       Used only for project covers, section chips, and small markers;
+       buttons, tags, and card surfaces stay in the blue family. */
+    --accent-coral: #d9917e;
+    --accent-apricot: #e2a963;
+    --accent-rose: #d495ad;
+
     /* Surfaces (translucent so the page background shows through) */
     --surface: rgba(242, 244, 241, 0.9);
     --surface-card: rgba(185, 200, 216, 0.85);
@@ -254,7 +261,8 @@ section {
     padding: 2.5rem 2rem;
 }
 
-/* Section headings render as opaque accent chips, not plain text */
+/* Section headings render as opaque accent chips, not plain text.
+   Each section gets its own hue so the warm accents recur site-wide. */
 .section-title {
     display: inline-block;
     background: var(--paper-strong);
@@ -265,6 +273,10 @@ section {
     margin-bottom: 2.5rem;
     box-shadow: none;
 }
+
+.section-title--coral { background: var(--accent-coral); }
+.section-title--apricot { background: var(--accent-apricot); }
+.section-title--rose { background: var(--accent-rose); }
 
 /* ==========================================================================
    About
@@ -299,12 +311,28 @@ section {
 }
 
 .skill-card h3 {
+    display: flex;
+    align-items: center;
+    gap: 8px;
     font-size: 0.8rem;
     font-weight: 650;
     text-transform: uppercase;
     letter-spacing: 0.05em;
     margin-bottom: 0.75rem;
 }
+
+/* Small colored square in place of an icon; hue rotates per card */
+.skill-card h3::before {
+    content: '';
+    width: 10px;
+    height: 10px;
+    background: var(--paper-strong);
+    flex-shrink: 0;
+}
+
+.skill-card:nth-child(2) h3::before { background: var(--accent-coral); }
+.skill-card:nth-child(3) h3::before { background: var(--accent-apricot); }
+.skill-card:nth-child(4) h3::before { background: var(--accent-rose); }
 
 /* Skill entries are flat chips — the shadowed card carries the depth */
 .skill-list {
@@ -351,7 +379,8 @@ section {
     outline-offset: 2px;
 }
 
-/* Typographic monogram instead of a thumbnail image */
+/* Line-art pictogram on a colored cover instead of a thumbnail image;
+   each project gets its own hue from the palette */
 .project-image {
     height: 140px;
     background: var(--paper-strong);
@@ -359,14 +388,21 @@ section {
     display: flex;
     align-items: center;
     justify-content: center;
+    color: var(--ink);
 }
 
-.project-initial {
-    font-size: 3.5rem;
-    font-weight: 700;
-    line-height: 1;
-    letter-spacing: -0.03em;
-    color: var(--ink);
+.project-image--coral { background: var(--accent-coral); }
+.project-image--apricot { background: var(--accent-apricot); }
+.project-image--rose { background: var(--accent-rose); }
+
+.project-glyph {
+    width: 64px;
+    height: 64px;
+    stroke: currentColor;
+    stroke-width: 2.5;
+    fill: none;
+    stroke-linejoin: miter;
+    stroke-linecap: square;
 }
 
 .project-info {

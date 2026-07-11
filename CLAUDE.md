@@ -16,7 +16,10 @@ To preview locally, open `index.html` in a browser or run `python3 -m http.serve
 
 Design and structure are set. Copy is a first draft written from the public
 GitHub profile (github.com/massirr) — sections carry `<!-- DRAFT COPY -->`
-comments where wording should be verified by the owner. Deliberate content
+comments where wording should be verified by the owner. **Positioning: the
+owner identifies as data-oriented, not a pure web developer** — copy leads
+with data (Python, SQL, Jupyter, Azure Databricks DP-750 in progress) and
+treats web development as a supporting skill. Keep that emphasis. Deliberate content
 decisions (do not reintroduce these):
 
 - **No emojis** — icons are replaced by typographic labels and monogram initials.

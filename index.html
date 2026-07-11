@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Irakoze Darlo — software developer based in Brussels. Web apps, APIs, and cloud-backed tools.">
+    <meta name="description" content="Irakoze Darlo — data-minded developer based in Brussels. Python, SQL, Azure, and the web apps around the data.">
     <title>Irakoze Darlo - Portfolio</title>
     <link rel="stylesheet" href="styles.css">
 </head>
@@ -27,8 +27,8 @@
     <section id="home" class="hero">
         <div class="hero-content">
             <h1 class="hero-title">Hi, I'm Irakoze Darlo.</h1>
-            <p class="hero-subtitle">Software developer based in Brussels</p>
-            <p class="hero-description">I build web apps, APIs, and cloud-backed tools — working with Vue, Node.js, C#, Python, and Azure.</p>
+            <p class="hero-subtitle">Data-minded developer based in Brussels</p>
+            <p class="hero-description">I work where data meets software — Python, SQL, and the Azure data stack, plus the web apps and APIs built around them.</p>
             <div class="hero-buttons">
                 <a href="#projects" class="btn btn-primary">View My Work</a>
                 <a href="#contact" class="btn btn-secondary">Get In Touch</a>
@@ -47,8 +47,8 @@
             <div class="section-inner">
                 <h2 class="section-title">About Me</h2>
                 <div class="about-text">
-                    <p>I'm a software developer based in Brussels who enjoys working across the whole stack — building interfaces in Vue, APIs with Node and Express, and applications in C# and Python.</p>
-                    <p>I'm Microsoft Azure certified (AZ-900) and comfortable in the cloud, with hands-on experience in Git, CI/CD, and browser test automation with Playwright.</p>
+                    <p>I'm a Brussels-based developer who gravitates toward data — exploring datasets with Python and Jupyter, working with SQL, and building the apps and APIs that put the data to use.</p>
+                    <p>I'm Microsoft Azure certified (AZ-900) and currently deepening my data engineering skills with Azure Databricks (DP-750) — I even built my own exam-prep app to study with. I can hold my own on the web side too, with Vue, Node, and C#.</p>
                     <p>Away from the day-to-day work I like tinkering with Arduino and Raspberry Pi, and keeping my GitHub busy with side projects.</p>
                 </div>
             </div>
@@ -62,22 +62,12 @@
                 <h2 class="section-title section-title--coral">Skills &amp; Technologies</h2>
                 <div class="skills-grid">
                     <div class="skill-card">
-                        <h3>Frontend</h3>
+                        <h3>Data &amp; Analytics</h3>
                         <ul class="skill-list">
-                            <li>Vue.js</li>
-                            <li>JavaScript</li>
-                            <li>TypeScript</li>
-                            <li>HTML &amp; CSS</li>
-                        </ul>
-                    </div>
-                    <div class="skill-card">
-                        <h3>Backend</h3>
-                        <ul class="skill-list">
-                            <li>Node.js</li>
-                            <li>Express</li>
-                            <li>C# / .NET</li>
                             <li>Python</li>
                             <li>SQL</li>
+                            <li>Jupyter</li>
+                            <li>Azure Databricks (DP-750, in progress)</li>
                         </ul>
                     </div>
                     <div class="skill-card">
@@ -90,10 +80,19 @@
                         </ul>
                     </div>
                     <div class="skill-card">
+                        <h3>Web Development</h3>
+                        <ul class="skill-list">
+                            <li>Vue.js</li>
+                            <li>JavaScript / TypeScript</li>
+                            <li>Node.js &amp; Express</li>
+                            <li>C# / .NET</li>
+                            <li>HTML &amp; CSS</li>
+                        </ul>
+                    </div>
+                    <div class="skill-card">
                         <h3>Testing &amp; Hardware</h3>
                         <ul class="skill-list">
                             <li>Playwright (.NET)</li>
-                            <li>Jupyter</li>
                             <li>Arduino</li>
                             <li>Raspberry Pi</li>
                         </ul>
@@ -109,6 +108,42 @@
             <div class="section-inner">
                 <h2 class="section-title section-title--apricot">Featured Projects</h2>
                 <div class="projects-grid">
+                    <a class="project-card" href="https://github.com/massirr/StudyApp">
+                        <div class="project-image project-image--rose">
+                            <!-- open book -->
+                            <svg class="project-glyph" viewBox="0 0 48 48" aria-hidden="true">
+                                <path d="M24 12 L8 8 V36 L24 40 L40 36 V8 L24 12 Z" />
+                                <path d="M24 12 V40" />
+                            </svg>
+                        </div>
+                        <div class="project-info">
+                            <h3>StudyApp</h3>
+                            <p>Exam-prep app I built to study for the Azure Databricks data engineering exam (DP-750) — study by topic, take quizzes, track progress.</p>
+                            <div class="project-tags">
+                                <span class="tag">TypeScript</span>
+                                <span class="tag">Databricks</span>
+                            </div>
+                        </div>
+                    </a>
+                    <a class="project-card" href="https://github.com/massirr/data_science_fundamentals">
+                        <div class="project-image">
+                            <!-- bar chart -->
+                            <svg class="project-glyph" viewBox="0 0 48 48" aria-hidden="true">
+                                <path d="M6 6 V42 H42" />
+                                <rect x="13" y="26" width="7" height="16" />
+                                <rect x="24" y="18" width="7" height="24" />
+                                <rect x="35" y="10" width="7" height="32" />
+                            </svg>
+                        </div>
+                        <div class="project-info">
+                            <h3>Data Science Fundamentals</h3>
+                            <p>Jupyter notebooks from my data science coursework — hands-on practice with Python's data tooling.</p>
+                            <div class="project-tags">
+                                <span class="tag">Python</span>
+                                <span class="tag">Jupyter</span>
+                            </div>
+                        </div>
+                    </a>
                     <a class="project-card" href="https://github.com/massirr/Electro">
                         <div class="project-image project-image--apricot">
                             <!-- lightning bolt -->
@@ -122,23 +157,6 @@
                             <div class="project-tags">
                                 <span class="tag">TypeScript</span>
                                 <span class="tag">Open Source</span>
-                            </div>
-                        </div>
-                    </a>
-                    <a class="project-card" href="https://github.com/massirr/StudyApp">
-                        <div class="project-image project-image--rose">
-                            <!-- open book -->
-                            <svg class="project-glyph" viewBox="0 0 48 48" aria-hidden="true">
-                                <path d="M24 12 L8 8 V36 L24 40 L40 36 V8 L24 12 Z" />
-                                <path d="M24 12 V40" />
-                            </svg>
-                        </div>
-                        <div class="project-info">
-                            <h3>StudyApp</h3>
-                            <p>Exam-prep app for Azure Databricks (DP-750) — study by topic, take quizzes, and track progress. No account required.</p>
-                            <div class="project-tags">
-                                <span class="tag">TypeScript</span>
-                                <span class="tag">Azure</span>
                             </div>
                         </div>
                     </a>

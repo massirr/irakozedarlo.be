@@ -83,15 +83,20 @@ styling, obey these rules — they are what make the design coherent:
 - `transition: transform 0.18s ease, background-color 0.18s ease` — nothing longer.
 - Card hover: `translateY(-2px)`; the shadow stays put, the card lifts off it.
 - Button hover: `translateY(-1px)`.
-- Entry animations: opacity fade only (~0.28s). No slides, bounces, scaling,
-  parallax, or typing effects.
-- One deliberate exception: the skills marquee (`.marquee`) scrolls
-  continuously left-to-right (36s linear loop, brand-colored tech logos),
-  pauses on hover, and is disabled under `prefers-reduced-motion`. Do not
-  add further continuous animations.
-- `prefers-reduced-motion` is respected (see end of `styles.css`).
+- Entry reveal: `.fade-in-up` (opacity + 16px rise, 0.5s); JS removes the
+  classes after the reveal so hover transitions take back over.
+- Owner-approved exceptions (do not add more): the skills marquee
+  (`.marquee`, continuous 36s left-to-right loop, pauses on hover), the
+  hero-title typewriter (50ms/char, skipped under reduced motion), and the
+  scroll-down indicator bounce. No parallax or scaling.
+- `prefers-reduced-motion` is respected (see end of `styles.css` and the
+  `reduceMotion` guard in `script.js`).
 
 ### Layout
-- Content width `min(100%, 1200px)`; card grids
-  `repeat(auto-fill, minmax(280px, 1fr))` gap 20px.
+- One shell, one padding layer (pattern borrowed from the StudyApp repo):
+  `.container` is `min(100%, 1320px)` with `padding: 0 24px` (12px below
+  720px). Sections and cards must NOT add their own horizontal page
+  padding — nested side paddings are what made the mobile layout cramped.
+- Card grids `repeat(auto-fill, minmax(280px, 1fr))` gap 20px.
 - Spacing in multiples of 4. Breakpoints at 720px and 480px.
+- `html` carries `overflow-x: hidden` (iOS ignores it on body alone).

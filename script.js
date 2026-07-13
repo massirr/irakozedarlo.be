@@ -1,3 +1,5 @@
+const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
 // Smooth scrolling for navigation links
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
@@ -12,7 +14,25 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
-// Fade elements in on scroll — opacity only, no slides or bounces
+// Typewriter effect on the hero title
+const heroTitle = document.querySelector('.hero-title');
+if (heroTitle && !reduceMotion) {
+    const originalText = heroTitle.textContent;
+    heroTitle.textContent = '';
+    let charIndex = 0;
+
+    function typeWriter() {
+        if (charIndex < originalText.length) {
+            heroTitle.textContent += originalText.charAt(charIndex);
+            charIndex++;
+            setTimeout(typeWriter, 50);
+        }
+    }
+
+    setTimeout(typeWriter, 500);
+}
+
+// Reveal cards on scroll: fade up (see .fade-in-up in styles.css)
 const observerOptions = {
     threshold: 0.1,
     rootMargin: '0px 0px -100px 0px'
@@ -21,15 +41,17 @@ const observerOptions = {
 const fadeObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
-            entry.target.style.opacity = '1';
-            fadeObserver.unobserve(entry.target);
+            const el = entry.target;
+            el.classList.add('is-visible');
+            fadeObserver.unobserve(el);
+            // hand transitions back to the card's own hover rules
+            setTimeout(() => el.classList.remove('fade-in-up', 'is-visible'), 600);
         }
     });
 }, observerOptions);
 
 document.querySelectorAll('.skill-card, .project-card').forEach(el => {
-    el.style.opacity = '0';
-    el.style.transition = 'opacity 0.28s ease-in-out, transform 0.18s ease, background-color 0.18s ease';
+    el.classList.add('fade-in-up');
     fadeObserver.observe(el);
 });
 

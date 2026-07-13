@@ -49,6 +49,8 @@
 
 html {
     scroll-behavior: smooth;
+    /* iOS Safari ignores overflow-x on body alone */
+    overflow-x: hidden;
 }
 
 body {
@@ -64,16 +66,31 @@ body {
     background-attachment: fixed;
 }
 
+/* One shell, one layer of side padding (like StudyApp's .app-shell).
+   Sections and cards must NOT add their own horizontal page padding. */
 .container {
-    width: min(100%, 1200px);
+    width: min(100%, 1320px);
     margin: 0 auto;
-    padding: 0 20px;
+    padding: 0 24px;
 }
 
 /* Typography */
 h1, h2, h3, h4 {
     font-weight: 700;
     line-height: 1.2;
+}
+
+/* Entry reveal: fade up on scroll. JS removes both classes after the
+   reveal so component hover transitions take back over. */
+.fade-in-up {
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 0.5s ease, transform 0.5s ease !important;
+}
+
+.fade-in-up.is-visible {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 /* ==========================================================================
@@ -92,7 +109,8 @@ h1, h2, h3, h4 {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0.85rem 20px;
+    padding-top: 0.85rem;
+    padding-bottom: 0.85rem;
 }
 
 .nav-brand {
@@ -137,12 +155,13 @@ h1, h2, h3, h4 {
    ========================================================================== */
 .hero {
     min-height: 100vh;
+    min-height: 100svh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
-    padding: 7rem 20px 4rem;
+    padding: 7rem 24px 4rem;
     position: relative;
 }
 
@@ -241,6 +260,12 @@ h1, h2, h3, h4 {
     text-transform: uppercase;
     letter-spacing: 0.06em;
     color: var(--ink-soft);
+    animation: bounce 2s ease-in-out infinite;
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
 }
 
 .scroll-arrow {
@@ -251,7 +276,7 @@ h1, h2, h3, h4 {
    Sections
    ========================================================================== */
 section {
-    padding: 5rem 20px;
+    padding: 5rem 0;
 }
 
 .section-inner {
@@ -568,7 +593,7 @@ section {
 .footer {
     background: var(--ink);
     color: var(--paper);
-    padding: 2rem 20px;
+    padding: 2rem 0;
     padding-bottom: max(48px, calc(24px + env(safe-area-inset-bottom, 0px)));
 }
 
@@ -621,12 +646,22 @@ section {
         box-shadow: var(--shadow-sm);
     }
 
+    /* Single, tighter padding layer on small screens */
+    .container {
+        padding: 0 12px;
+    }
+
+    .hero {
+        padding-left: 12px;
+        padding-right: 12px;
+    }
+
     .hero-content {
-        padding: 2rem 1.25rem;
+        padding: 2rem 1rem;
     }
 
     .section-inner {
-        padding: 1.75rem 1.25rem;
+        padding: 28px 12px;
     }
 
     .skill-card,

@@ -49,16 +49,18 @@ styling, obey these rules — they are what make the design coherent:
 - `border-radius: 0` everywhere. No exceptions — one rounded corner breaks the style.
 - One ink color drives text, borders, shadows, and primary buttons:
   `--ink: #16191e` (near-black, cool cast).
-- Palette: paper `#f2f4f1` (cool off-white), accent `#b9c8d8` (dusty powder
-  blue, card surfaces), highlight `--paper-strong: #7ea8cc` (slate blue —
+- Palette: paper `#f2f4f1` (cool off-white), accent `#b0c9e2` (powder blue,
+  card surfaces), highlight `--paper-strong: #649fd3` (saturated slate blue —
   chips, tags, text-on-ink), plus semantic green/red reserved for
   correct/incorrect states.
-- Three warm companions to the blue, muted to the same chalky tone:
-  `--accent-coral: #d9917e`, `--accent-apricot: #e2a963`,
-  `--accent-rose: #d495ad`. **Usage is restricted**: project covers,
-  section-title chips, and the small square markers on skill cards. Buttons,
-  tags, nav, and card surfaces stay in the blue family — the warm hues are
-  seasoning, not structure. Do not introduce further hues.
+- Three warm companions to the blue: `--accent-coral: #e28568`,
+  `--accent-apricot: #ecaa4f`, `--accent-rose: #d983ae`. **Usage is
+  restricted**: project covers, section-title chips, and the small square
+  markers on skill cards. Buttons, tags, nav, and card surfaces stay in the
+  blue family — the warm hues are seasoning, not structure. Do not introduce
+  further hues.
+- One exception: the skills marquee logos keep their official brand colors
+  (inline `fill` on each SVG). Everywhere else the palette rules apply.
 - This palette was chosen deliberately to differ from the StudyApp repo's
   tan/gold.
 - Surfaces are translucent (`--surface*` tokens) so the layered page
@@ -83,6 +85,10 @@ styling, obey these rules — they are what make the design coherent:
 - Button hover: `translateY(-1px)`.
 - Entry animations: opacity fade only (~0.28s). No slides, bounces, scaling,
   parallax, or typing effects.
+- One deliberate exception: the skills marquee (`.marquee`) scrolls
+  continuously left-to-right (36s linear loop, brand-colored tech logos),
+  pauses on hover, and is disabled under `prefers-reduced-motion`. Do not
+  add further continuous animations.
 - `prefers-reduced-motion` is respected (see end of `styles.css`).
 
 ### Layout

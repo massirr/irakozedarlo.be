@@ -19,19 +19,19 @@
     --ink-soft: #3d444d;
 
     --paper: #f2f4f1;
-    --paper-strong: #7ea8cc;
-    --accent: #b9c8d8;
+    --paper-strong: #649fd3;
+    --accent: #b0c9e2;
 
-    /* Warm companions to the blue — muted, same chalky tone family.
+    /* Warm companions to the blue — same family, turned up a notch.
        Used only for project covers, section chips, and small markers;
        buttons, tags, and card surfaces stay in the blue family. */
-    --accent-coral: #d9917e;
-    --accent-apricot: #e2a963;
-    --accent-rose: #d495ad;
+    --accent-coral: #e28568;
+    --accent-apricot: #ecaa4f;
+    --accent-rose: #d983ae;
 
     /* Surfaces (translucent so the page background shows through) */
     --surface: rgba(242, 244, 241, 0.9);
-    --surface-card: rgba(185, 200, 216, 0.85);
+    --surface-card: rgba(176, 201, 226, 0.85);
     --surface-section: rgba(242, 244, 241, 0.6);
 
     /* Lines */
@@ -58,9 +58,9 @@ body {
     color: var(--ink);
     overflow-x: hidden;
     background:
-        radial-gradient(circle at top left, rgba(185, 200, 216, 0.6), transparent 30%),
+        radial-gradient(circle at top left, rgba(176, 201, 226, 0.7), transparent 30%),
         radial-gradient(circle at top right, rgba(22, 25, 30, 0.05), transparent 26%),
-        linear-gradient(180deg, #f7f9f6 0%, #eff2f0 50%, #e3e9e8 100%);
+        linear-gradient(180deg, #f7f9f6 0%, #edf2f2 50%, #d9e5ec 100%);
     background-attachment: fixed;
 }
 
@@ -225,7 +225,7 @@ h1, h2, h3, h4 {
 }
 
 .btn-secondary {
-    background: rgba(185, 200, 216, 0.75);
+    background: rgba(176, 201, 226, 0.8);
     color: var(--ink);
 }
 
@@ -292,6 +292,57 @@ section {
 /* ==========================================================================
    Skills
    ========================================================================== */
+/* Endless strip of tech logos drifting left-to-right. The one continuous
+   animation on the site: linear, slow, pauses on hover, off under
+   prefers-reduced-motion. Logos keep their official brand colors — the
+   single exception to the palette; labels stay ink. */
+.marquee {
+    overflow: hidden;
+    background: var(--paper);
+    border: var(--border-hard);
+    padding: 14px 0;
+    margin-bottom: 2rem;
+}
+
+.marquee-track {
+    display: flex;
+    align-items: center;
+    gap: 44px;
+    width: max-content;
+    padding-left: 44px;
+    animation: marquee-drift 36s linear infinite;
+}
+
+.marquee:hover .marquee-track {
+    animation-play-state: paused;
+}
+
+@keyframes marquee-drift {
+    from { transform: translateX(-50%); }
+    to { transform: translateX(0); }
+}
+
+.marquee-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+    color: var(--ink);
+}
+
+.marquee-item svg {
+    width: 24px;
+    height: 24px;
+}
+
+.marquee-item span {
+    font-size: 0.8rem;
+    font-weight: 650;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    white-space: nowrap;
+}
+
 .skills-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -307,7 +358,7 @@ section {
 
 .skill-card:hover {
     transform: translateY(-2px);
-    background: rgba(185, 200, 216, 0.92);
+    background: rgba(176, 201, 226, 0.92);
 }
 
 .skill-card h3 {
@@ -371,7 +422,7 @@ section {
 
 .project-card:hover {
     transform: translateY(-2px);
-    background: rgba(185, 200, 216, 0.92);
+    background: rgba(176, 201, 226, 0.92);
 }
 
 .project-card:focus-visible {
@@ -607,5 +658,9 @@ section {
     *::after {
         animation-duration: 0.01ms !important;
         transition-duration: 0.01ms !important;
+    }
+
+    .marquee-track {
+        animation: none;
     }
 }

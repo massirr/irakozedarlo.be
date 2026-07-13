@@ -540,11 +540,21 @@ section {
 }
 
 .contact-link .label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
     font-size: 0.8rem;
     font-weight: 650;
     text-transform: uppercase;
     letter-spacing: 0.05em;
     color: var(--ink);
+}
+
+/* Brand logos on contact links — same brand-color exception as the marquee */
+.contact-glyph {
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
 }
 
 .contact-link .value {

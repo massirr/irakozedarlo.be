@@ -86,9 +86,11 @@ styling, obey these rules — they are what make the design coherent:
 - Entry reveal: `.fade-in-up` (opacity + 16px rise, 0.5s); JS removes the
   classes after the reveal so hover transitions take back over.
 - Owner-approved exceptions (do not add more): the skills marquee
-  (`.marquee`, continuous 36s left-to-right loop, pauses on hover), the
-  hero-title typewriter (50ms/char, skipped under reduced motion), and the
-  scroll-down indicator bounce. No parallax or scaling.
+  (`.marquee`, continuous 36s left-to-right loop, pauses on hover) and the
+  hero-title typewriter (50ms/char, skipped under reduced motion). The
+  scroll-down indicator was removed at the owner's request (it collided
+  with the hero card on phones) — do not reintroduce it. No parallax or
+  scaling.
 - `prefers-reduced-motion` is respected (see end of `styles.css` and the
   `reduceMotion` guard in `script.js`).
 

@@ -29,6 +29,15 @@ decisions (do not reintroduce these):
 - **No contact form** — there is no backend; contact is a `mailto:` CTA plus
   direct links (email, LinkedIn, GitHub).
 
+## Backlog (owner's to-do, keep until done)
+
+- **Get indexed**: submit irakozedarlo.be to Google Search Console (verify
+  via DNS TXT record at Combell) and Bing Webmaster Tools; add the site URL
+  to the owner's LinkedIn profile and GitHub profile website field.
+- Review remaining `<!-- DRAFT COPY -->` sections with the owner.
+- Decide contact email: currently irakoze.darlo@outlook.com; owner also has
+  addresses on the irakozedarlo.be domain.
+
 ## Design system: hard-shadow style
 
 The site follows a strict "hard-shadow" design language. When touching any
@@ -63,8 +72,13 @@ styling, obey these rules — they are what make the design coherent:
   (inline `fill` on each SVG). Everywhere else the palette rules apply.
 - This palette was chosen deliberately to differ from the StudyApp repo's
   tan/gold.
-- Surfaces are translucent (`--surface*` tokens) so the layered page
-  background glows through.
+- Neubrutalist surfaces (reference: bored.com, owner-approved 2026-07):
+  fills are **opaque** (`--surface*` tokens), the page background is paper
+  with an ink dot grid (`22px` spacing), and **every shadowed surface also
+  carries a `2px solid var(--ink)` border**. Small chips (skill-list items,
+  contact links) are white with the same 2px ink border but no shadow.
+  Corners stay square — rounded pills from the reference were explicitly
+  rejected.
 
 ### Typography
 - Stack: `'Avenir Next', 'Segoe UI Variable', 'Segoe UI', sans-serif`.

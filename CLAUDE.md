@@ -81,7 +81,7 @@ styling, obey these rules — they are what make the design coherent:
   rejected.
 
 ### Typography
-- Primary face: **Figtree**, self-hosted in `fonts/` (woff2, weights
+- Primary face: **Manrope**, self-hosted in `fonts/` (woff2, weights
   400/600/700/800, latin subset) — no external font requests. Fallback
   stack: `'Avenir Next', 'Segoe UI Variable', 'Segoe UI', sans-serif`.
 - Headings are weight 800 (neubrutalist chunk); interactive labels 650–700.

@@ -11,37 +11,37 @@
     box-sizing: border-box;
 }
 
-/* Figtree — self-hosted (fonts/), no external requests */
+/* Manrope — self-hosted (fonts/), no external requests */
 @font-face {
-    font-family: 'Figtree';
+    font-family: 'Manrope';
     font-style: normal;
     font-weight: 400;
     font-display: swap;
-    src: url('fonts/figtree-latin-400-normal.woff2') format('woff2');
+    src: url('fonts/manrope-latin-400-normal.woff2') format('woff2');
 }
 
 @font-face {
-    font-family: 'Figtree';
+    font-family: 'Manrope';
     font-style: normal;
     font-weight: 600;
     font-display: swap;
-    src: url('fonts/figtree-latin-600-normal.woff2') format('woff2');
+    src: url('fonts/manrope-latin-600-normal.woff2') format('woff2');
 }
 
 @font-face {
-    font-family: 'Figtree';
+    font-family: 'Manrope';
     font-style: normal;
     font-weight: 700;
     font-display: swap;
-    src: url('fonts/figtree-latin-700-normal.woff2') format('woff2');
+    src: url('fonts/manrope-latin-700-normal.woff2') format('woff2');
 }
 
 @font-face {
-    font-family: 'Figtree';
+    font-family: 'Manrope';
     font-style: normal;
     font-weight: 800;
     font-display: swap;
-    src: url('fonts/figtree-latin-800-normal.woff2') format('woff2');
+    src: url('fonts/manrope-latin-800-normal.woff2') format('woff2');
 }
 
 :root {
@@ -88,7 +88,7 @@ html {
 }
 
 body {
-    font-family: 'Figtree', 'Avenir Next', 'Segoe UI Variable', 'Segoe UI',
+    font-family: 'Manrope', 'Avenir Next', 'Segoe UI Variable', 'Segoe UI',
         -apple-system, BlinkMacSystemFont, sans-serif;
     line-height: 1.6;
     color: var(--ink);

@@ -31,12 +31,43 @@ decisions (do not reintroduce these):
 
 ## Backlog (owner's to-do, keep until done)
 
-- **Get indexed**: submit irakozedarlo.be to Google Search Console (verify
-  via DNS TXT record at Combell) and Bing Webmaster Tools; add the site URL
-  to the owner's LinkedIn profile and GitHub profile website field.
+- ~~Get indexed~~ — done 2026-07-19: verified in Google Search Console (DNS
+  TXT record at Combell) and Bing Webmaster Tools (imported from Search
+  Console); sitemap submitted to both; indexing requested on Google.
+  Remaining: add the site URL to the owner's LinkedIn profile and GitHub
+  profile website field, so both engines pick up real inbound links too.
 - Review remaining `<!-- DRAFT COPY -->` sections with the owner.
 - Decide contact email: currently irakoze.darlo@outlook.com; owner also has
   addresses on the irakozedarlo.be domain.
+
+## SEO / indexing reference
+
+How search engines find and list this site — kept here since the owner
+asked once and will likely ask again.
+
+- **Crawler** (aka "bot"/"spider"): an automated program a search engine
+  runs to fetch pages, read their HTML, and follow every link to discover
+  more pages. Google's is Googlebot, Bing's is Bingbot — each engine
+  crawls independently; registering with one does nothing for the other.
+- **Crawling vs. indexing**: crawling = the bot visited and read the page.
+  Indexing = the page was added to the searchable database. A page can be
+  crawled without being indexed if it looks thin/duplicate/low-value.
+- **`robots.txt`** (site root): the crawler's rulebook, checked before
+  anything else — which paths it may/may not fetch. This site allows all.
+- **`sitemap.xml`** (site root): an explicit list of URLs handed to the
+  crawler, so it doesn't have to rely purely on discovering pages via
+  links — most useful for small/new sites with few inbound links.
+- **JSON-LD structured data** (in `index.html` `<head>`): machine-readable
+  facts (here: Person schema — name, job title, location, GitHub/LinkedIn)
+  so the crawler doesn't have to infer who/what the page is about from
+  prose.
+- **"Request indexing"** in Search Console: puts a specific URL in a
+  priority crawl queue instead of waiting for the bot's normal schedule.
+  Re-clicking it repeatedly does not speed things up further.
+- Verified in: Google Search Console + Bing Webmaster Tools (see backlog
+  above for dates/method). To re-check status later: search
+  `site:irakozedarlo.be` on each engine, or check the "Google Index" tab
+  in Search Console.
 
 ## Design system: hard-shadow style
 

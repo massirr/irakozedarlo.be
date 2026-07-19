@@ -11,6 +11,39 @@
     box-sizing: border-box;
 }
 
+/* Figtree — self-hosted (fonts/), no external requests */
+@font-face {
+    font-family: 'Figtree';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('fonts/figtree-latin-400-normal.woff2') format('woff2');
+}
+
+@font-face {
+    font-family: 'Figtree';
+    font-style: normal;
+    font-weight: 600;
+    font-display: swap;
+    src: url('fonts/figtree-latin-600-normal.woff2') format('woff2');
+}
+
+@font-face {
+    font-family: 'Figtree';
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap;
+    src: url('fonts/figtree-latin-700-normal.woff2') format('woff2');
+}
+
+@font-face {
+    font-family: 'Figtree';
+    font-style: normal;
+    font-weight: 800;
+    font-display: swap;
+    src: url('fonts/figtree-latin-800-normal.woff2') format('woff2');
+}
+
 :root {
     color-scheme: light;
 
@@ -18,7 +51,7 @@
     --ink: #16191e;
     --ink-soft: #3d444d;
 
-    --paper: #f2f4f1;
+    --paper: #f4f4f2;
     --paper-strong: #649fd3;
     --accent: #b0c9e2;
 
@@ -55,8 +88,8 @@ html {
 }
 
 body {
-    font-family: 'Avenir Next', 'Segoe UI Variable', 'Segoe UI', -apple-system,
-        BlinkMacSystemFont, sans-serif;
+    font-family: 'Figtree', 'Avenir Next', 'Segoe UI Variable', 'Segoe UI',
+        -apple-system, BlinkMacSystemFont, sans-serif;
     line-height: 1.6;
     color: var(--ink);
     overflow-x: hidden;
@@ -74,9 +107,9 @@ body {
     padding: 0 24px;
 }
 
-/* Typography */
+/* Typography — headings go extra-bold, the neubrutalist weight */
 h1, h2, h3, h4 {
-    font-weight: 700;
+    font-weight: 800;
     line-height: 1.2;
 }
 

@@ -81,7 +81,10 @@ styling, obey these rules — they are what make the design coherent:
   rejected.
 
 ### Typography
-- Stack: `'Avenir Next', 'Segoe UI Variable', 'Segoe UI', sans-serif`.
+- Primary face: **Figtree**, self-hosted in `fonts/` (woff2, weights
+  400/600/700/800, latin subset) — no external font requests. Fallback
+  stack: `'Avenir Next', 'Segoe UI Variable', 'Segoe UI', sans-serif`.
+- Headings are weight 800 (neubrutalist chunk); interactive labels 650–700.
 - Display headings: `clamp(1.85rem, 3.5vw, 3rem)`, `line-height: 1`,
   `letter-spacing: -0.03em`, `max-width: 16ch`.
 - Section headings are chips: inline-block, opaque `--paper-strong`

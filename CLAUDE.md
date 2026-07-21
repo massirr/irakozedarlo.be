@@ -126,6 +126,25 @@ styling, obey these rules — they are what make the design coherent:
   colored covers instead of thumbnail images: ink strokes, `stroke-width`
   2.5, square caps/miter joins to match the sharp-cornered style. No emojis,
   no raster images.
+- Brand icons (GitHub, LinkedIn, Outlook, tech-logo marquee) are inline SVG
+  from Simple Icons — never emoji, never raster. Two color treatments:
+  monochrome `currentColor` for nav/footer icon links (opacity 0.5 idle →
+  1 on hover — "Muted-to-full icon buttons" below), and official brand fill
+  colors in the marquee and the contact-method rows only.
+
+### Project cards with a live deployment
+- Owner-approved pattern (2026-07) for projects that have a live URL
+  (StudyApp, Electro): the card is an `<article>`, not an `<a>`. The title
+  (`.project-card-link`) uses a `::after { position:absolute; inset:0 }`
+  stretched-link so the whole card is clickable to the **live site**, while
+  a small `.project-source` badge (top-right, white chip, 2px ink border,
+  GitHub mark, `z-index:2`) independently links to the **GitHub repo**.
+  Add a `<span class="tag tag--live">Live</span>` as the first tag
+  (`--positive` green fill) so live projects are visually distinct.
+- Projects with no live deployment keep the simple pattern: the whole
+  `<a class="project-card">` links straight to the GitHub repo, no badge.
+- All external project/repo/live links open in a new tab
+  (`target="_blank" rel="noopener"`) so the portfolio stays open.
 
 ### Motion
 - `transition: transform 0.18s ease, background-color 0.18s ease` — nothing longer.
@@ -133,6 +152,9 @@ styling, obey these rules — they are what make the design coherent:
 - Button hover: `translateY(-1px)`.
 - Entry reveal: `.fade-in-up` (opacity + 16px rise, 0.5s); JS removes the
   classes after the reveal so hover transitions take back over.
+- Muted-to-full icon buttons (nav icons, footer social links): idle at
+  `opacity: 0.5–0.75`, full opacity on hover/focus, transitioning opacity
+  only — no color or scale change.
 - Owner-approved exceptions (do not add more): the skills marquee
   (`.marquee`, continuous 36s left-to-right loop, pauses on hover) and the
   hero-title typewriter (50ms/char, skipped under reduced motion). The

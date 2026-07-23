@@ -133,6 +133,20 @@ apricot, rose).
   stacks go vertical) and 480px.
 - `html { overflow-x: hidden }` (iOS ignores it on body alone).
 
+**Containment — a shadowed card must never escape its parent.** The hard
+shadow makes any overflow obvious, so the rule is strict:
+
+- Every shadowed surface sits fully inside its parent's padding box; its 2px
+  border and offset shadow never cross the parent's edge. A card bleeding out
+  the side of another card means this rule is broken.
+- Don't nest shadows. Inside a shadowed card, put flat blocks (border only,
+  no shadow) — the outermost surface owns the shadow.
+- Every flex or grid child gets `min-width: 0`. The default `auto` lets
+  content force the child wider than its track, straight past the parent.
+- Long unbreakable strings — URLs, tokens, code, hashes — must wrap:
+  `overflow-wrap: anywhere` on `code` and any cell that can hold them. A long
+  URL is the classic trigger for a card breaking out of its container.
+
 ## 10. Do / Don't
 
 **Do**: one shadow recipe; borders on everything shadowed; flat chips for
@@ -140,4 +154,6 @@ contrast; opaque fills; square corners; warm accents as seasoning.
 
 **Don't**: blur or soften shadows; round any corner; introduce new hues;
 put warm accents on structural elements; animate continuously (beyond the
-two approved exceptions); use emojis.
+two approved exceptions); use emojis; let a shadowed card bleed past its
+parent (`min-width: 0` on flex/grid children; wrap long URLs/code with
+`overflow-wrap: anywhere`).

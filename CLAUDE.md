@@ -184,3 +184,16 @@ styling, obey these rules — they are what make the design coherent:
 - Card grids `repeat(auto-fill, minmax(280px, 1fr))` gap 20px.
 - Spacing in multiples of 4. Breakpoints at 720px and 480px.
 - `html` carries `overflow-x: hidden` (iOS ignores it on body alone).
+
+### Containment — a shadowed card must never escape its parent
+The hard shadow makes overflow glaringly obvious, so this is strict:
+- Every shadowed surface sits fully inside its parent's padding box; its 2px
+  border and offset shadow never cross the parent's edge. A card bleeding out
+  the side of another card means this rule is broken.
+- Don't nest shadows: inside a shadowed card, put flat blocks (border only,
+  no shadow). The outermost surface owns the shadow.
+- Every flex or grid child gets `min-width: 0`. The default `auto` lets its
+  content force the child wider than its track, straight past the parent.
+- Long unbreakable strings — URLs, tokens, code, hashes — must wrap:
+  `overflow-wrap: anywhere` on `code` and any cell that can hold them. A long
+  URL is the classic trigger for a card breaking out of its container.

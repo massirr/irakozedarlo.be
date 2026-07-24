@@ -14,14 +14,18 @@ To preview locally, open `index.html` in a browser or run `python3 -m http.serve
 
 ## Current state
 
-Design and structure are set. Copy is a first draft written from the public
-GitHub profile (github.com/massirr) — sections carry `<!-- DRAFT COPY -->`
-comments where wording should be verified by the owner. **Positioning: the owner's chosen title is "Aspiring data engineer with an
-interest in software development"** — copy leads with data (Python, SQL,
-Jupyter, Azure Databricks DP-750 in progress) and treats web development as
-a supporting skill. Keep that emphasis; do not retitle him as a software
-developer. Once DP-750 is passed, the "aspiring" qualifier can be revisited. Deliberate content
-decisions (do not reintroduce these):
+Design and structure are set. Most copy has been owner-reviewed; a couple of
+sections may still carry `<!-- DRAFT COPY -->` comments where wording should
+be verified. **Positioning (updated 2026-07-22): the owner passed DP-750 and
+now goes by "Data Engineer — Azure Databricks Certified"** — dropped
+"Aspiring" per the plan recorded here earlier. Certifications held: AZ-900,
+DP-750. Copy leads with data (Python, SQL, Jupyter, Azure Databricks) and
+treats web development as a supporting skill — keep that emphasis, do not
+retitle him as a software developer. He's now working toward a **GitHub
+Actions certification** (CI/CD direction, mentioned in the About section as
+forward momentum) — do not upgrade the title to "DevOps Engineer" or similar
+until that credential is actually earned; revisit then, same as DP-750.
+Deliberate content decisions (do not reintroduce these):
 
 - **No emojis** — icons are replaced by typographic labels and monogram initials.
 - **No skill percentage bars** — skills are flat chip lists, no invented numbers.
@@ -33,12 +37,20 @@ decisions (do not reintroduce these):
 
 - ~~Get indexed~~ — done 2026-07-19: verified in Google Search Console (DNS
   TXT record at Combell) and Bing Webmaster Tools (imported from Search
-  Console); sitemap submitted to both; indexing requested on Google.
-  Remaining: add the site URL to the owner's LinkedIn profile and GitHub
-  profile website field, so both engines pick up real inbound links too.
-- Review remaining `<!-- DRAFT COPY -->` sections with the owner.
+  Console); sitemap submitted to both; indexing requested on Google. As of
+  2026-07-22 not yet showing in a `site:irakozedarlo.be` search — check back;
+  not unusual this soon for a brand-new, low-backlink domain.
+- Add the site URL to the owner's LinkedIn profile and GitHub profile
+  website field (GitHub's `blog` field can't be set via the available MCP
+  tools — owner must do it manually at github.com/settings/profile). Also
+  update the LinkedIn headline/About to match the new title below.
+- ~~Review remaining DRAFT COPY sections~~ — done 2026-07-22: hero and about
+  copy rewritten with owner-confirmed facts (DP-750 passed, GitHub Actions
+  next) and the DRAFT COPY markers removed.
 - Decide contact email: currently irakoze.darlo@outlook.com; owner also has
   addresses on the irakozedarlo.be domain.
+- When the GitHub Actions certification is earned, revisit the title again
+  (see Positioning above) — likely the next natural upgrade point.
 
 ## SEO / indexing reference
 

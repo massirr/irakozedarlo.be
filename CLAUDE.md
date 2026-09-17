@@ -59,13 +59,16 @@ Deliberate content decisions (do not reintroduce these):
   addresses on the irakozedarlo.be domain.
 - When the GitHub Actions certification is earned, revisit the title again
   (see Positioning above) — likely the next natural upgrade point.
-- ~~Add CV to the Contact section~~ — done 2026-09-17: résumé card
-  (`.contact-resume`) added beside the contact links, linking to
-  `assets/Irakoze-Darlo-CV.pdf`. Filled the empty space that used to sit to
-  the right of the contact card on desktop; stacks below the links on
+- ~~Add CV to the Contact section~~ — done 2026-09-17: CV card
+  (`.contact-resume` in the CSS — internal class name only; the visible
+  label reads "CV", not "Resume" — owner is Belgium-based, where "CV" is
+  the standard term regardless of document length, unlike the US
+  resume/CV distinction) added beside the contact links, linking to
+  `assets/Irakoze-Darlo-CV.pdf`. Filled the empty space that used to sit
+  to the right of the contact card on desktop; stacks below the links on
   mobile (720px breakpoint). Keep the CV content in sync with the
   Positioning section above when it's updated.
-- ~~Add a CV preview image to the resume card~~ — done 2026-09-17: on wide
+- ~~Add a CV preview image to the CV card~~ — done 2026-09-17: on wide
   screens the card splits into text (left) + a PDF page-1 preview image
   (right, `assets/cv-preview.png`, rendered from the PDF with PyMuPDF at
   ~640px wide); clicking the image downloads the CV, same as the button.

@@ -624,8 +624,63 @@ section {
 /* ==========================================================================
    Contact — no form, just a direct email CTA and profile links
    ========================================================================== */
+.contact-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 560px) 1fr;
+    align-items: start;
+    gap: 32px;
+}
+
 .contact-content {
+    min-width: 0;
     max-width: 560px;
+}
+
+/* Résumé card fills the space beside the contact links on wide screens;
+   stacks below them on narrow ones (see @media rule) */
+.contact-resume {
+    min-width: 0;
+    height: 100%;
+    background: var(--surface-card);
+    border: var(--border-hard);
+    box-shadow: var(--shadow);
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.6rem;
+    transition: transform 0.18s ease, background-color 0.18s ease;
+}
+
+.contact-resume:hover {
+    transform: translateY(-2px);
+    background: #bdd3e8;
+}
+
+.contact-resume-glyph {
+    width: 40px;
+    height: 40px;
+    stroke: var(--ink);
+    stroke-width: 2.5;
+    fill: none;
+    stroke-linejoin: miter;
+    stroke-linecap: square;
+    margin-bottom: 0.4rem;
+}
+
+.contact-resume h3 {
+    font-size: 1.15rem;
+    letter-spacing: -0.02em;
+}
+
+.contact-resume p {
+    color: var(--ink-soft);
+    font-size: 0.9rem;
+    margin-bottom: 0.6rem;
+}
+
+.contact-resume-btn {
+    margin-top: auto;
 }
 
 .contact-content h3 {
@@ -795,6 +850,16 @@ section {
     .hero-buttons {
         flex-direction: column;
         align-items: stretch;
+    }
+
+    .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .contact-resume {
+        box-shadow: var(--shadow-sm);
+        padding: 1.25rem;
     }
 }
 

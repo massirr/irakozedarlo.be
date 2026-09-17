@@ -9,6 +9,10 @@ framework, no dependencies.
 - `index.html` — single-page portfolio (hero, about, skills, projects, contact, footer)
 - `styles.css` — all styling; the design system lives here as CSS custom properties on `:root`
 - `script.js` — vanilla JS: smooth scroll, fade-in on scroll, active nav link
+- `assets/Irakoze-Darlo-CV.pdf` — downloadable CV, linked from the résumé
+  card in the Contact section (`.contact-resume`). Replace this file in
+  place (same filename) when the owner sends an updated CV; no HTML/CSS
+  change needed unless the filename changes.
 
 To preview locally, open `index.html` in a browser or run `python3 -m http.server`.
 
@@ -51,6 +55,12 @@ Deliberate content decisions (do not reintroduce these):
   addresses on the irakozedarlo.be domain.
 - When the GitHub Actions certification is earned, revisit the title again
   (see Positioning above) — likely the next natural upgrade point.
+- ~~Add CV to the Contact section~~ — done 2026-09-17: résumé card
+  (`.contact-resume`) added beside the contact links, linking to
+  `assets/Irakoze-Darlo-CV.pdf`. Filled the empty space that used to sit to
+  the right of the contact card on desktop; stacks below the links on
+  mobile (720px breakpoint). Keep the CV content in sync with the
+  Positioning section above when it's updated.
 
 ## SEO / indexing reference
 

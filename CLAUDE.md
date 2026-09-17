@@ -9,10 +9,14 @@ framework, no dependencies.
 - `index.html` — single-page portfolio (hero, about, skills, projects, contact, footer)
 - `styles.css` — all styling; the design system lives here as CSS custom properties on `:root`
 - `script.js` — vanilla JS: smooth scroll, fade-in on scroll, active nav link
-- `assets/Irakoze-Darlo-CV.pdf` — downloadable CV, linked from the résumé
+- `assets/Irakoze-Darlo-CV.pdf` — downloadable CV, linked from the resume
   card in the Contact section (`.contact-resume`). Replace this file in
   place (same filename) when the owner sends an updated CV; no HTML/CSS
   change needed unless the filename changes.
+- `assets/cv-preview.png` — page-1 preview image of the CV, shown next to
+  the text on wide screens (see Backlog below for how it was generated).
+  Regenerate it whenever the CV PDF is replaced, or the preview goes
+  stale.
 
 To preview locally, open `index.html` in a browser or run `python3 -m http.server`.
 
@@ -61,6 +65,18 @@ Deliberate content decisions (do not reintroduce these):
   the right of the contact card on desktop; stacks below the links on
   mobile (720px breakpoint). Keep the CV content in sync with the
   Positioning section above when it's updated.
+- ~~Add a CV preview image to the resume card~~ — done 2026-09-17: on wide
+  screens the card splits into text (left) + a PDF page-1 preview image
+  (right, `assets/cv-preview.png`, rendered from the PDF with PyMuPDF at
+  ~640px wide); clicking the image downloads the CV, same as the button.
+  This split only has room above **1150px** viewport width — the card's
+  own column (inside `.contact-grid`'s `1fr` track) gets too narrow below
+  that and the two inner columns start squeezing text/buttons onto broken
+  lines, so a dedicated `@media (max-width: 1150px)` rule (separate from
+  the usual 720px/480px breakpoints) drops it to the single-column,
+  no-preview version — the same version mobile already used. If the
+  preview image or resume text changes, regenerate the PNG the same way
+  (page 1 only, ~640px wide) rather than hand-editing it.
 
 ## SEO / indexing reference
 

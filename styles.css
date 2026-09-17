@@ -636,8 +636,10 @@ section {
     max-width: 560px;
 }
 
-/* Résumé card fills the space beside the contact links on wide screens;
-   stacks below them on narrow ones (see @media rule) */
+/* Resume card fills the space beside the contact links on wide screens;
+   stacks below them on narrow ones (see @media rule). Desktop splits into
+   text + PDF preview image (both link to the download); mobile drops the
+   preview and keeps the original single-column card. */
 .contact-resume {
     min-width: 0;
     height: 100%;
@@ -645,16 +647,24 @@ section {
     border: var(--border-hard);
     box-shadow: var(--shadow);
     padding: 2rem;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.6rem;
+    display: grid;
+    grid-template-columns: 1fr minmax(0, 220px);
+    align-items: stretch;
+    gap: 1.5rem;
     transition: transform 0.18s ease, background-color 0.18s ease;
 }
 
 .contact-resume:hover {
     transform: translateY(-2px);
     background: #bdd3e8;
+}
+
+.contact-resume-text {
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.6rem;
 }
 
 .contact-resume-glyph {
@@ -668,12 +678,12 @@ section {
     margin-bottom: 0.4rem;
 }
 
-.contact-resume h3 {
+.contact-resume-text h3 {
     font-size: 1.15rem;
     letter-spacing: -0.02em;
 }
 
-.contact-resume p {
+.contact-resume-text p {
     color: var(--ink-soft);
     font-size: 0.9rem;
     margin-bottom: 0.6rem;
@@ -681,6 +691,23 @@ section {
 
 .contact-resume-btn {
     margin-top: auto;
+}
+
+/* PDF preview — flat (border only, no shadow: the outer card owns the
+   shadow), clicking it downloads the CV same as the button */
+.contact-resume-preview {
+    display: block;
+    min-width: 0;
+    border: var(--border-hard);
+    overflow: hidden;
+}
+
+.contact-resume-preview img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
 }
 
 .contact-content h3 {
@@ -860,6 +887,20 @@ section {
     .contact-resume {
         box-shadow: var(--shadow-sm);
         padding: 1.25rem;
+    }
+}
+
+/* The resume card's text+preview split needs more room than the rest of
+   the page's 720px breakpoint allows — below ~1150px the two columns
+   start squeezing text and buttons onto broken lines. Drop to a single
+   column earlier, same fallback the card already uses on mobile. */
+@media (max-width: 1150px) {
+    .contact-resume {
+        grid-template-columns: 1fr;
+    }
+
+    .contact-resume-preview {
+        display: none;
     }
 }
 

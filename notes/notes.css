@@ -1,0 +1,355 @@
+/* ==========================================================================
+   Class 1 reading notes. Layers on top of ../styles.css (hard-shadow system).
+   Only the outer .section-inner owns a shadow; everything inside is flat.
+   ========================================================================== */
+
+main {
+    padding-top: 64px;
+}
+
+main section {
+    padding: 2.5rem 0;
+}
+
+a.nav-brand {
+    text-decoration: none;
+    display: inline-block;
+}
+
+/* Hero panel */
+.notes-hero .section-inner > * + * {
+    margin-top: 1rem;
+}
+
+.notes-kicker {
+    font-size: 0.8rem;
+    font-weight: 650;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--ink-soft);
+}
+
+.notes-hero h1 {
+    font-size: clamp(1.85rem, 3.5vw, 3rem);
+    line-height: 1;
+    letter-spacing: -0.03em;
+    max-width: 16ch;
+}
+
+.notes-lede {
+    font-size: 1.1rem;
+    font-weight: 600;
+    max-width: 68ch;
+}
+
+.notes-hero .section-inner p {
+    max-width: 68ch;
+}
+
+.notes-disclosure {
+    background: #fff;
+    border: var(--border-hard);
+    padding: 0.75rem 1rem;
+    font-size: 0.9rem;
+}
+
+.notes-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 14px 16px;
+    padding-top: 0.5rem;
+}
+
+.notes-progress {
+    font-weight: 700;
+    font-size: 0.9rem;
+}
+
+.notes-status {
+    font-size: 0.85rem;
+    font-weight: 600;
+    min-width: 0;
+}
+
+/* Articles: flat blocks inside the shadowed section panel */
+.note-article {
+    background: #fff;
+    border: var(--border-hard);
+    padding: 1.75rem;
+    margin-bottom: 1.5rem;
+    scroll-margin-top: 80px;
+    min-width: 0;
+}
+
+.note-article:last-child {
+    margin-bottom: 0;
+}
+
+.note-meta {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-size: 0.8rem;
+    font-weight: 650;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--ink-soft);
+}
+
+.note-meta::before {
+    content: "";
+    width: 10px;
+    height: 10px;
+    background: var(--paper-strong);
+    flex: none;
+}
+
+.note-article:nth-of-type(2) .note-meta::before { background: var(--accent-coral); }
+.note-article:nth-of-type(3) .note-meta::before { background: var(--accent-apricot); }
+.note-article:nth-of-type(4) .note-meta::before { background: var(--accent-rose); }
+
+.note-article h3 {
+    font-size: clamp(1.4rem, 2.6vw, 1.9rem);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    margin: 0.5rem 0 1rem;
+}
+
+.note-article h4 {
+    font-size: 0.8rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin: 1.5rem 0 0.5rem;
+}
+
+.note-body p,
+.note-body li {
+    max-width: 72ch;
+    overflow-wrap: break-word;
+}
+
+.note-body p + p {
+    margin-top: 0.75rem;
+}
+
+.note-body ul {
+    padding-left: 1.25rem;
+}
+
+.note-body li + li {
+    margin-top: 0.5rem;
+}
+
+/* Citation chips */
+.cite {
+    display: inline-block;
+    min-width: 1.35em;
+    padding: 0 0.3em;
+    margin-left: 0.15em;
+    background: var(--accent);
+    border: 1.5px solid var(--ink);
+    color: var(--ink);
+    font-size: 0.7em;
+    font-weight: 800;
+    line-height: 1.5;
+    text-align: center;
+    text-decoration: none;
+    vertical-align: super;
+}
+
+.cite:hover {
+    background: var(--ink);
+    color: var(--paper-strong);
+}
+
+.cite:focus-visible,
+.source-title:focus-visible,
+.ready-list input:focus-visible,
+.source-read input:focus-visible {
+    outline: 2px solid var(--ink);
+    outline-offset: 2px;
+}
+
+/* Sources */
+.note-sources {
+    margin-top: 2rem;
+    padding-top: 1.25rem;
+    border-top: var(--border-hard);
+}
+
+.note-sources h4 {
+    margin-top: 0;
+    margin-bottom: 0.9rem;
+}
+
+.note-count {
+    font-weight: 650;
+    color: var(--ink-soft);
+    text-transform: none;
+    letter-spacing: 0;
+}
+
+.source-list {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 280px), 1fr));
+    gap: 14px;
+}
+
+.source {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    min-width: 0;
+    padding: 0.9rem;
+    background: var(--surface);
+    border: var(--border-hard);
+    scroll-margin-top: 80px;
+}
+
+.source:target {
+    background: var(--accent);
+}
+
+.source--extra {
+    border-style: dashed;
+}
+
+.source-top {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.source-num {
+    display: inline-block;
+    min-width: 1.6rem;
+    padding: 0.1rem 0.4rem;
+    background: var(--ink);
+    color: var(--paper-strong);
+    font-size: 0.8rem;
+    font-weight: 800;
+    text-align: center;
+}
+
+.tag--muted {
+    background: #fff;
+    border: 1.5px solid var(--ink);
+    padding: calc(0.3rem - 1.5px) calc(0.6rem - 1.5px);
+}
+
+.source-title {
+    font-weight: 700;
+    line-height: 1.3;
+    color: var(--ink);
+    overflow-wrap: anywhere;
+}
+
+.source-note {
+    font-size: 0.875rem;
+    color: var(--ink-soft);
+    flex: 1;
+}
+
+.source-read {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.85rem;
+    font-weight: 650;
+    cursor: pointer;
+}
+
+.source-read input,
+.ready-list input {
+    width: 18px;
+    height: 18px;
+    accent-color: var(--ink);
+    flex: none;
+    cursor: pointer;
+}
+
+/* Checklist and notes */
+.note-body .ready-list {
+    list-style: none;
+    padding-left: 0;
+    margin-top: 0.5rem;
+}
+
+.ready-list li + li {
+    margin-top: 0.6rem;
+}
+
+.ready-list label {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.7rem;
+    padding: 0.7rem 0.9rem;
+    background: var(--surface);
+    border: var(--border-hard);
+    cursor: pointer;
+}
+
+.ready-list input {
+    margin-top: 0.15rem;
+}
+
+.question-box {
+    margin-top: 1.25rem;
+    padding: 1rem;
+    background: var(--surface);
+    border: var(--border-hard);
+    min-width: 0;
+}
+
+.question-box label {
+    display: block;
+    font-weight: 800;
+}
+
+.question-hint {
+    font-size: 0.875rem;
+    color: var(--ink-soft);
+    margin: 0.25rem 0 0.6rem;
+}
+
+.question-box textarea {
+    display: block;
+    width: 100%;
+    min-height: 7rem;
+    padding: 0.7rem;
+    border: var(--border-hard);
+    border-radius: 0;
+    background: #fff;
+    color: var(--ink);
+    font: inherit;
+    line-height: 1.5;
+    resize: vertical;
+}
+
+.question-box textarea:focus {
+    outline: 3px solid var(--paper-strong);
+    outline-offset: 0;
+}
+
+#reminder .notes-actions {
+    margin-top: 1.25rem;
+}
+
+@media (max-width: 720px) {
+    main section {
+        padding: 1.75rem 0;
+    }
+
+    .note-article {
+        padding: 1rem;
+    }
+
+    .source-list {
+        grid-template-columns: 1fr;
+    }
+}

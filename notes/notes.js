@@ -118,36 +118,10 @@
         });
     }
 
-    // Page menu (hamburger): open, close, highlight the page in view
-    var toggle = document.getElementById('menu-toggle');
+    // Highlight the menu entry for the page in view (open/close lives in ../menu.js)
     var menu = document.getElementById('page-menu');
     var links = menu ? Array.prototype.slice.call(menu.querySelectorAll('a[href^="#"]')) : [];
     var targets = links.map(function (l) { return document.querySelector(l.getAttribute('href')); });
-
-    function setMenu(open) {
-        if (!menu || !toggle) return;
-        menu.hidden = !open;
-        toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
-    }
-
-    if (toggle && menu) {
-        toggle.addEventListener('click', function (e) {
-            e.stopPropagation();
-            setMenu(menu.hidden);
-        });
-        menu.addEventListener('click', function (e) {
-            if (e.target.closest('a')) setMenu(false);
-        });
-        document.addEventListener('click', function (e) {
-            if (!menu.hidden && !menu.contains(e.target)) setMenu(false);
-        });
-        document.addEventListener('keydown', function (e) {
-            if (e.key === 'Escape' && !menu.hidden) {
-                setMenu(false);
-                toggle.focus();
-            }
-        });
-    }
 
     function onScroll() {
         var y = window.scrollY + 120;

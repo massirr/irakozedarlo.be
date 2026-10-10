@@ -9,14 +9,19 @@ framework, no dependencies.
 - `index.html` — single-page portfolio (hero, about, skills, projects, contact, footer)
 - `styles.css` — all styling; the design system lives here as CSS custom properties on `:root`
 - `script.js` — vanilla JS: smooth scroll, fade-in on scroll, active nav link
+- `menu.js` + the `.menu-toggle` / `.page-menu` rules in `styles.css` — shared
+  hamburger "Menu" button (top bar, both pages): opens a flat dropdown to pick
+  a page or section. On the portfolio it lists the sections plus a link to the
+  study notes; on the notes page it lists the marked slides.
 - `notes/hacking-ai-systems-class-1.html` — reading-notes page for the
   Hacking AI Systems class 1 minipaper (study aid, blog-style summaries with
   numbered source citations, a readiness checklist and three answer-note
-  boxes). Deliberately `noindex`, not linked from the portfolio and not in
-  `sitemap.xml`. Uses `../styles.css` plus `notes/notes.css` (layout only,
-  same hard-shadow rules) and `notes/notes.js` (read-ticks and note text in
-  localStorage, copy and download-as-.md buttons, hamburger page menu). Add a link from `index.html` or a
-  sitemap entry only if the owner asks.
+  boxes). Deliberately `noindex` and not in `sitemap.xml`; it is reachable
+  only through the Menu on the portfolio (owner's request, 2026-10-10), so
+  remove that menu entry if it should go private again. Uses `../styles.css`
+  plus `notes/notes.css` (layout only, same hard-shadow rules) and
+  `notes/notes.js` (read-ticks and note text in localStorage, copy and
+  download-as-.md buttons, menu highlight).
 - `assets/Irakoze-Darlo-CV.pdf` — downloadable CV, linked from the resume
   card in the Contact section (`.contact-resume`). Replace this file in
   place (same filename) when the owner sends an updated CV; no HTML/CSS

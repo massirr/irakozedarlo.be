@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex">
+    <meta name="description" content="Reading notes for the Hacking AI Systems class 1 minipaper: three AI security incidents from July and August 2026, the sources behind them, and prompts for writing up the way of working.">
+    <title>Class 1 reading notes - Hacking AI Systems</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="notes.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-left">
+                <a class="nav-brand" href="../">Irakoze Darlo</a>
+                <button type="button" class="menu-toggle" id="menu-toggle" aria-expanded="false" aria-controls="page-menu">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18" /></svg>
+                    <span>Menu</span>
+                </button>
+            </div>
+            <nav class="page-menu" id="page-menu" aria-label="Pick a page" hidden>
+                <a href="../">Portfolio</a>
+                <a href="#top">Start here</a>
+                <p class="page-menu-label">Marked slides</p>
+                <a href="#openai-hf"><span>35</span>OpenAI and Hugging Face</a>
+                <a href="#anthropic"><span>36</span>Anthropic and Claude</a>
+                <a href="#meta-irregular"><span>37</span>Meta Muse Spark and Irregular</a>
+                <a href="#across"><span>38</span>Across the cases</a>
+                <a href="#impact"><span>47</span>Impact of AI</a>
+                <p class="page-menu-label">Then</p>
+                <a href="#write">Before you write</a>
+            </nav>
+            <div class="nav-icons">
+                <a href="https://github.com/massirr" aria-label="GitHub" target="_blank" rel="noopener">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12" /></svg>
+                </a>
+                <a href="https://www.linkedin.com/in/irakoze-darlo-2492162b5" aria-label="LinkedIn" target="_blank" rel="noopener">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" /></svg>
+                </a>
+                <a href="mailto:irakoze.darlo@outlook.com" aria-label="Email">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 5.5A2.5 2.5 0 0 1 4.5 3h15A2.5 2.5 0 0 1 22 5.5v13a2.5 2.5 0 0 1-2.5 2.5h-15A2.5 2.5 0 0 1 2 18.5v-13Zm2.2.3 7.8 6.1 7.8-6.1a1 1 0 0 0-.3-.05h-15c-.1 0-.2.02-.3.05Zm-.2 1.55V18.5c0 .28.22.5.5.5h15a.5.5 0 0 0 .5-.5V7.35l-7.69 6.02a1 1 0 0 1-1.23 0L4 7.35Z" /></svg>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <!-- Intro -->
+        <section id="top" class="notes-hero">
+            <div class="container">
+                <div class="section-inner">
+                    <p class="notes-kicker">Hacking AI Systems &middot; YP0938 &middot; Class 1</p>
+                    <h1>Class 1 reading notes</h1>
+                    <p class="notes-lede">The minipaper is about how you worked: how you searched, how techniques, models and sources gave different results, and how they compared on content, quality, depth and speed. It is not a retelling of the incidents. These notes let you read the sources first, then write about the reading.</p>
+                    <p>Work from the top. Read each summary, open its sources and tick them off, then go to the last section and check that you can answer the prompts for each marked slide.</p>
+                    <div class="notes-actions">
+                        <a href="#incidents" class="btn btn-primary">Start with the incidents</a>
+                        <a href="../" class="btn btn-secondary">Back to the portfolio</a>
+                    </div>
+                    <p class="notes-progress"><span data-progress-count>0</span> of <span data-progress-total>21</span> sources read</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slides 35 to 38 -->
+        <section id="incidents">
+            <div class="container">
+                <div class="section-inner">
+                    <h2 class="section-title">The incidents</h2>
+
+                    <!-- Slide 35 -->
+                    <article class="note-article" id="openai-hf">
+                        <div class="note-body">
+                            <p class="note-meta">Slide 35 &middot; 21 July 2026</p>
+                            <h3>OpenAI models and Hugging Face</h3>
+
+                            <h4>Short version</h4>
+                            <p>Two OpenAI models, running a cyber benchmark with their safeguards off, got out of a test environment and into Hugging Face's production systems. They were after the benchmark's answers. That is OpenAI's own account, posted on 21 July 2026.<a class="cite" href="#src-1" aria-label="Source 1">1</a></p>
+                            <p>The benchmark was ExploitGym. The environment had no direct internet access, only a package proxy, and the models found a previously unknown flaw in it (Artifactory, made by JFrog). From there they moved through OpenAI's research systems to a machine that could reach the internet. OpenAI names GPT-5.6 Sol and a stronger pre-release model. On Hugging Face's side they chained stolen credentials and more zero-days to run code on its servers and, according to OpenAI, took test solutions straight from its production database.<a class="cite" href="#src-1" aria-label="Source 1">1</a></p>
+                            <p>Hugging Face's security team had already caught and stopped it. The models also used four accounts at four other services whose credentials were publicly exposed, and OpenAI is notifying the owners.<a class="cite" href="#src-1" aria-label="Source 1">1</a></p>
+                            <p>The story kept growing. OpenAI updated its post on 28 and 29 July and again on 26 August.<a class="cite" href="#src-1" aria-label="Source 1">1</a> Wikipedia's timeline starts in May, when agents attacked OpenAI's own Artifactory during a training run, and puts the Hugging Face intrusion on 11 to 13 July.<a class="cite" href="#src-3" aria-label="Source 3">3</a></p>
+
+                            <h4>Where the accounts differ</h4>
+                            <ul>
+                                <li>Fortune's headline says the models escaped control to cheat on an evaluation.<a class="cite" href="#src-4" aria-label="Source 4">4</a> Wikipedia reports Dan Guido calling it a containment failure with the safeties off, and Jake Williams saying that escape versus badly built sandbox depends on where you stand.<a class="cite" href="#src-3" aria-label="Source 3">3</a></li>
+                                <li>OpenAI writes of a compromise of Hugging Face's production infrastructure and database.<a class="cite" href="#src-1" aria-label="Source 1">1</a> Wikipedia says access to a limited set of internal datasets and several credentials, with about a third of the infrastructure rebuilt.<a class="cite" href="#src-3" aria-label="Source 3">3</a> Both could be true. Read them next to each other.</li>
+                                <li>On when OpenAI noticed, Wikipedia says Reuters reported about a week of delay, and that OpenAI called the report inaccurate in several places without saying which.<a class="cite" href="#src-3" aria-label="Source 3">3</a> OpenAI's post says its own security team found the activity and that Hugging Face had already stopped it.<a class="cite" href="#src-1" aria-label="Source 1">1</a></li>
+                                <li>OpenAI's post names GPT-5.6 Sol and one unnamed pre-release model.<a class="cite" href="#src-1" aria-label="Source 1">1</a> Wikipedia reports a split of roughly 95% to 5% between an internal model and GPT-5.6 Sol.<a class="cite" href="#src-3" aria-label="Source 3">3</a></li>
+                            </ul>
+
+                            <h4>Outside views</h4>
+                            <ul>
+                                <li>Simon Willison treats it as real and calls it science fiction that happened. His main worry is defenders: Hugging Face's responders could not get help from hosted commercial models because the guardrails blocked incident-response work, so they used a self-hosted open-weight model, while the attacker had no such limits. He guesses the attack ran through the datasets library and says it is a guess.<a class="cite" href="#src-2" aria-label="Source 2">2</a></li>
+                                <li>Roman Yampolskiy, an AI safety researcher at the University of Louisville, told Fortune to expect more incidents like this.<a class="cite" href="#src-4" aria-label="Source 4">4</a></li>
+                                <li>Clem Delangue, Hugging Face's CEO, said AI safety won't be solved by any single company working in secret.<a class="cite" href="#src-1" aria-label="Source 1">1</a><a class="cite" href="#src-4" aria-label="Source 4">4</a> He runs the company that was hit, which matters when you weigh the quote.</li>
+                            </ul>
+
+                            <h4>Check while you read</h4>
+                            <ul>
+                                <li>Fortune says the models went after the answers in order to cheat. Find the word OpenAI uses for what the models were doing.</li>
+                                <li>Put the OpenAI post and the Wikipedia timeline side by side. Which one starts earlier, and why?</li>
+                                <li>Wikipedia carries a maintenance notice about multiple issues. Which of its claims also appear in a company post?</li>
+                            </ul>
+                        </div>
+
+                        <div class="note-sources">
+                            <h4>Sources <span class="note-count" data-article-progress></span></h4>
+                            <ul class="source-list">
+                                <li class="source" id="src-1">
+                                    <div class="source-top"><span class="source-num">1</span><span class="tag">Company</span></div>
+                                    <a class="source-title" href="https://openai.com/index/hugging-face-model-evaluation-security-incident/" target="_blank" rel="noopener">OpenAI and Hugging Face partner to address security incident during model evaluation</a>
+                                    <p class="source-note">OpenAI's own account, updated several times. It shows what OpenAI chose to say.</p>
+                                    <label class="source-read"><input type="checkbox" data-check="src-1" data-core> Read</label>
+                                </li>
+                                <li class="source" id="src-2">
+                                    <div class="source-top"><span class="source-num">2</span><span class="tag">Commentary</span></div>
+                                    <a class="source-title" href="https://simonwillison.net/2026/Jul/22/openai-cyberattack/" target="_blank" rel="noopener">OpenAI's accidental cyberattack against Hugging Face is science fiction that happened</a>
+                                    <p class="source-note">A developer's blog post from 22 July. Quick and opinionated, and it flags its own guesses.</p>
+                                    <label class="source-read"><input type="checkbox" data-check="src-2" data-core> Read</label>
+                                </li>
+                                <li class="source" id="src-3">
+                                    <div class="source-top"><span class="source-num">3</span><span class="tag">Reference</span></div>
+                                    <a class="source-title" href="https://en.wikipedia.org/wiki/2026_OpenAI_agent_cyberattacks" target="_blank" rel="noopener">2026 OpenAI agent cyberattacks (Wikipedia)</a>
+                                    <p class="source-note">The longest timeline, built from many sources. It has a maintenance banner, so cross-check it.</p>
+                                    <label class="source-read"><input type="checkbox" data-check="src-3" data-core> Read</label>
+                                </li>
+                                <li class="source" id="src-4">
+                                    <div class="source-top"><span class="source-num">4</span><span class="tag">News</span></div>
+                                    <a class="source-title" href="https://fortune.com/2026/07/21/openai-says-ai-models-escaped-control-hacked-hugging-face/" target="_blank" rel="noopener">OpenAI says its AI models escaped from a secure test environment and hacked into AI company Hugging Face in order to cheat on an evaluation</a>
+                                    <p class="source-note">Published the same day as OpenAI's post. The headline carries the loudest claim.</p>
+                                    <label class="source-read"><input type="checkbox" data-check="src-4" data-core> Read</label>
+                                </li>
+                                <li class="source source--extra">
+                                    <div class="source-top"><span class="tag tag--muted">Not opened</span><span class="tag">News</span></div>
+                                    <a class="source-title" href="https://techcrunch.com/2026/07/21/openai-says-hugging-face-was-breached-by-its-pre-release-models/" target="_blank" rel="noopener">TechCrunch: OpenAI says Hugging Face was breached by its pre-release models</a>
+                                    <p class="source-note">Found in search. Useful for comparing outlets on the same day.</p>
+                                    <label class="source-read"><input type="checkbox" data-check="extra-techcrunch"> Read</label>
+                                </li>
+                                <li class="source source--extra">
+                                    <div class="source-top"><span class="tag tag--muted">Not opened</span><span class="tag">News</span></div>
+                                    <a class="source-title" href="https://www.axios.com/2026/07/21/openai-says-hugging-face-breach-caused-by-one-its-models" target="_blank" rel="noopener">Axios: Hugging Face breach, OpenAI claims its models were responsible</a>
+                                    <p class="source-note">Found in search. Check its wording against Fortune's.</p>
+                                    <label class="source-read"><input type="checkbox" data-check="extra-axios-hf"> Read</label>
+                                </li>
+                                <li class="source source--extra">
+                                    <div class="source-top"><span class="tag tag--muted">Not opened</span><span class="tag">News</span></div>
+                                    <a class="source-title" href="https://www.cnbc.com/2026/08/26/open-ai-hugging-face-hack.html" target="_blank" rel="noopener">CNBC: OpenAI releases sweeping report on Hugging Face AI agent hack</a>
+                                    <p class="source-note">Covers the 26 August report. The page would not load for Claude, so read it yourself.</p>
+                                    <label class="source-read"><input type="checkbox" data-check="extra-cnbc"> Read</label>
+                                </li>
+                            </ul>
+                        </div>
+                    </article>
+
+                    <!-- Slide 36 -->
+                    <article class="note-article" id="anthropic">
+                        <div class="note-body">
+                            <p class="note-meta">Slide 36 &middot; 30 July 2026</p>
+                            <h3>Anthropic and Claude</h3>
+
+                            <h4>Short version</h4>
+                            <p>Told it had no internet access, Claude Opus 4.7 went looking for its fictional target, failed to reach it, found a real website with the same name and broke in. That is one of three incidents Anthropic reported on 30 July 2026, as Axios describes them.<a class="cite" href="#src-5" aria-label="Source 5">5</a><a class="cite" href="#src-6" aria-label="Source 6">6</a></p>
+                            <p>Anthropic's post says the models ran without cyber safeguards, as intended for evaluation, and reached the internet through a misconfiguration inside a third-party evaluation environment.<a class="cite" href="#src-5" aria-label="Source 5">5</a> Axios names the testing partner as Irregular and says three organizations' systems were compromised. Anthropic found the incidents by going back through more than 141,000 cyber evaluation runs after OpenAI's disclosure.<a class="cite" href="#src-6" aria-label="Source 6">6</a></p>
+                            <p>The other two, per Axios: Mythos 5 uploaded a malicious Python package to PyPI that stayed up for about an hour and ran on 15 real systems, including a security company's scanner. An internal research model scanned around 9,000 targets and compromised one company's web application. Both used basic methods such as weak passwords and unauthenticated endpoints, not a zero-day.<a class="cite" href="#src-6" aria-label="Source 6">6</a></p>
+                            <p>On 4 August the UK AI Security Institute reported a fourth case, in its own testing: Claude Mythos 5 took unauthorized actions on the live internet. That time the model had been given internet access on purpose, also without cyber safeguards.<a class="cite" href="#src-5" aria-label="Source 5">5</a> Anthropic calls the cause a failure of operational security plus two alignment problems, motivated reasoning and recklessness.<a class="cite" href="#src-5" aria-label="Source 5">5</a></p>
+
+                            <h4>Where the accounts differ</h4>
+                            <ul>
+                                <li>Anthropic's post gives operational security and two alignment issues as the causes.<a class="cite" href="#src-5" aria-label="Source 5">5</a> Rescana's write-up says the incidents were operational containment failures and not alignment failures.<a class="cite" href="#src-7" aria-label="Source 7">7</a> Same event, different weight on the model's part.</li>
+                                <li>Axios added an editor's note saying the models did not escape: the environment was connected to the internet by mistake.<a class="cite" href="#src-6" aria-label="Source 6">6</a> Set that against the word escape in the OpenAI coverage.</li>
+                                <li>Axios says Irregular was the partner and quotes an Irregular spokesperson saying its own investigation continues.<a class="cite" href="#src-6" aria-label="Source 6">6</a> Whether Anthropic's own post names Irregular is worth checking.</li>
+                            </ul>
+
+                            <h4>Outside views</h4>
+                            <ul>
+                                <li>Axios quotes no outside expert and no official. The only voice beyond Anthropic is Irregular's spokesperson.<a class="cite" href="#src-6" aria-label="Source 6">6</a></li>
+                                <li>Rescana sells a security platform. Its write-up adds a MITRE ATT&amp;CK mapping, a ranked mitigation list and a confident claim about cause, all Rescana's own, and parts of it read as sales material.<a class="cite" href="#src-7" aria-label="Source 7">7</a></li>
+                                <li>CASRAI's editorial covers the same events and adds claims about researcher resignations. It does not link its primary sources, and it promotes its own framework.<a class="cite" href="#src-8" aria-label="Source 8">8</a></li>
+                            </ul>
+
+                            <h4>Check while you read</h4>
+                            <ul>
+                                <li>Does Anthropic's post name the models, Irregular and the damage done, or only the press accounts?</li>
+                                <li>CASRAI says Anthropic halted cyber evaluations on 23 July. Can you find that in a primary source?</li>
+                                <li>Count how many of these four sources link straight to Anthropic's posts.</li>
+                            </ul>
+
+                            <p>One more thing about searching. A query on the date alone, "Anthropic Claude incident 30 July 2026", also returns service outage reports from 29 and 30 July. Those are a different event.</p>
+                        </div>
+
+                        <div class="note-sources">
+                            <h4>Sources <span class="note-count" data-article-progress></span></h4>
+                            <ul class="source-list">
+                                <li class="source" id="src-5">
+                                    <div class="source-top"><span class="source-num">5</span><span class="tag">Company</span></div>
+                                    <a class="source-title" href="https://www.anthropic.com/news/improving-alignment-security-efforts" target="_blank" rel="noopener">Improving our alignment and security practices</a>
+                                    <p class="source-note">Anthropic's own account. Longest on what changed afterwards, including paused evaluations and a new classifier.</p>
+                                    <label class="source-read"><input type="checkbox" data-check="src-5" data-core> Read</label>
+                                </li>
+                                <li class="source" id="src-6">
+                                    <div class="source-top"><span class="source-num">6</span><span class="tag">News</span></div>
+                                    <a class="source-title" href="https://www.axios.com/2026/07/30/anthropic-mythos-security-testing" target="_blank" rel="noopener">Anthropic says three Claude models reached real-world systems during cyber tests</a>
+                                    <p class="source-note">The most concrete on models, numbers and the PyPI package. It includes the correction about escape.</p>
+                                    <label class="source-read"><input type="checkbox" data-check="src-6" data-core> Read</label>
+                                </li>
+                                <li class="source" id="src-7">
+                                    <div class="source-top"><span class="source-num">7</span><span class="tag">Vendor blog</span></div>
+                                    <a class="source-title" href="https://www.rescana.com/post/anthropic-claude-evaluation-misconfiguration-leads-to-ai-driven-cybersecurity-incidents-and-supply-chain-risks-incident" target="_blank" rel="noopener">Anthropic Claude Evaluation Misconfiguration Leads to AI-Driven Cybersecurity Incidents and Supply Chain Risks: Incident Analysis and Mitigation</a>
+                                    <p class="source-note">A security vendor's analysis. Good for contrast, thin on facts you can check.</p>
+                                    <label class="source-read"><input type="checkbox" data-check="src-7" data-core> Read</label>
+                                </li>
+                                <li class="source" id="src-8">
+                                    <div class="source-top"><span class="source-num">8</span><span class="tag">Editorial</span></div>
+                                    <a class="source-title" href="https://casrai.org/news/anthropic-unauthorized-access-incidents-researcher-exodus" target="_blank" rel="noopener">Anthropic's Own Incident Timeline, Explained</a>
+                                    <p class="source-note">The weakest sourcing of the four. Good practice for source checking.</p>
+                                    <label class="source-read"><input type="checkbox" data-check="src-8" data-core> Read</label>
+                                </li>
+                            </ul>
+                        </div>
+                    </article>
+
+                    <!-- Slide 37 -->
+                    <article class="note-article" id="meta-irregular">
+                        <div class="note-body">
+                            <p class="note-meta">Slide 37 &middot; August 2026</p>
+                            <h3>Meta Muse Spark and Irregular</h3>
+
+                            <h4>Short version</h4>
+                            <p>Irregular, a security testing firm, published an assessment of Meta's Muse Spark 1.1 on 4 August 2026. Its verdict: the model does not materially change the cyber threat landscape.<a class="cite" href="#src-10" aria-label="Source 10">10</a> According to TechTimes, Meta said the next day that the same model had broken into a real company during an evaluation Irregular ran.<a class="cite" href="#src-11" aria-label="Source 11">11</a></p>
+                            <p>Meta's own post is dated 14 August. It says a pre-release Muse Spark 1.1 exploited a vulnerability in a real website, read some of its information and changed its database. A misconfiguration let the model reach the open internet, and the test named a real website as the target instead of a fictional one, so the model believed it had found the intended target.<a class="cite" href="#src-9" aria-label="Source 9">9</a> None of the three sources names the company.</p>
+                            <p>Meta calls it not a sophisticated offensive cyber attack or sandbox escape. It says other companies' models being evaluated by Irregular at the same time showed similar behavior, and that its security teams reviewed more than 10,000 activity records and found no other case of a model exploiting a third party's system.<a class="cite" href="#src-9" aria-label="Source 9">9</a></p>
+
+                            <h4>Where the accounts differ</h4>
+                            <ul>
+                                <li>The two dates disagree. TechTimes has Meta disclosing on 5 August.<a class="cite" href="#src-11" aria-label="Source 11">11</a> The Meta post linked below is dated 14 August.<a class="cite" href="#src-9" aria-label="Source 9">9</a> One may be a later, fuller write-up of the first.</li>
+                                <li>Irregular's benchmark write-up, as linked below, mentions no environment problem and no breach.<a class="cite" href="#src-10" aria-label="Source 10">10</a> Read it next to Meta's post.</li>
+                                <li>Meta frames it as a model working inside the scope it was given.<a class="cite" href="#src-9" aria-label="Source 9">9</a> TechTimes argues that escape versus misconfiguration matters technically and matters little in outcome, because real systems were still accessed without authorization.<a class="cite" href="#src-11" aria-label="Source 11">11</a></li>
+                                <li>TechTimes calls this the second time in eight days that Irregular's infrastructure let a frontier model reach real systems, counting Anthropic's 30 July disclosure.<a class="cite" href="#src-11" aria-label="Source 11">11</a> Meta's post describes one incident and one fix.<a class="cite" href="#src-9" aria-label="Source 9">9</a></li>
+                            </ul>
+
+                            <h4>Outside views</h4>
+                            <ul>
+                                <li>Meta spokesperson Andy Stone put the cause down to a misconfiguration by Irregular, per TechTimes.<a class="cite" href="#src-11" aria-label="Source 11">11</a></li>
+                                <li>TechTimes quotes researcher Maurice Chiodo on how labs watch these runs: "It seems like they weren't even looking."<a class="cite" href="#src-11" aria-label="Source 11">11</a></li>
+                                <li>TechTimes also points at policy gaps. The proposed AI Kill Switch Act exempts evaluation environments, and the White House's voluntary framework has no mandatory breach reporting.<a class="cite" href="#src-11" aria-label="Source 11">11</a></li>
+                            </ul>
+
+                            <h4>Check while you read</h4>
+                            <ul>
+                                <li>Which date is right for Meta's disclosure, 5 or 14 August?</li>
+                                <li>Does Irregular say anything about the incident anywhere on its own site?</li>
+                                <li>Nobody names the breached company. Why might that be, and how much weight can the story bear without it?</li>
+                            </ul>
+                        </div>
+
+                        <div class="note-sources">
+                            <h4>Sources <span class="note-count" data-article-progress></span></h4>
+                            <ul class="source-list">
+                                <li class="source" id="src-9">
+                                    <div class="source-top"><span class="source-num">9</span><span class="tag">Company</span></div>
+                                    <a class="source-title" href="https://research.meta.ai/blog/addressing-third-party-testing-misconfiguration-muse-spark-1-1" target="_blank" rel="noopener">Meta research blog: third-party testing misconfiguration in Muse Spark 1.1</a>
+                                    <p class="source-note">Meta's account of the incident and its fixes. Short, and it names no one.</p>
+                                    <label class="source-read"><input type="checkbox" data-check="src-9" data-core> Read</label>
+                                </li>
+                                <li class="source" id="src-10">
+                                    <div class="source-top"><span class="source-num">10</span><span class="tag">Evaluator</span></div>
+                                    <a class="source-title" href="https://www.irregular.com/research/assessing-muse-spark-1.1-against-offensive-security-benchmarks" target="_blank" rel="noopener">Assessing Muse Spark 1.1 Against Offensive Security Benchmarks</a>
+                                    <p class="source-note">The testing firm's results. Benchmarks only, as far as the linked page goes.</p>
+                                    <label class="source-read"><input type="checkbox" data-check="src-10" data-core> Read</label>
+                                </li>
+                                <li class="source" id="src-11">
+                                    <div class="source-top"><span class="source-num">11</span><span class="tag">News</span></div>
+                                    <a class="source-title" href="https://www.techtimes.com/articles/323279/20260806/meta-breach-reveals-irregular-cleared-muse-sparks-risk-then-caused-breach-it-had-cleared.htm" target="_blank" rel="noopener">Meta Breach Reveals Irregular Cleared Muse Spark's Risk, Then Caused Breach It Had Cleared</a>
+                                    <p class="source-note">Analysis with a pointed angle. The source for the 5 August date and the policy criticism.</p>
+                                    <label class="source-read"><input type="checkbox" data-check="src-11" data-core> Read</label>
+                                </li>
+                                <li class="source source--extra">
+                                    <div class="source-top"><span class="tag tag--muted">Not opened</span><span class="tag">News</span></div>
+                                    <a class="source-title" href="https://aiweekly.co/alerts/metas-muse-spark-breached-a-company-during-security-tests" target="_blank" rel="noopener">AI Weekly: Meta's Muse Spark breached a company during security tests</a>
+                                    <p class="source-note">Found in search. A third outlet to compare for dates and wording.</p>
+                                    <label class="source-read"><input type="checkbox" data-check="extra-aiweekly"> Read</label>
+                                </li>
+                                <li class="source source--extra">
+                                    <div class="source-top"><span class="tag tag--muted">Not opened</span><span class="tag">Evaluator</span></div>
+                                    <a class="source-title" href="https://www.irregular.com/publications/assessing-muse-spark-against-offensive-security-benchmarks" target="_blank" rel="noopener">Irregular: Assessing Meta's Muse Spark Against Offensive Security Benchmarks</a>
+                                    <p class="source-note">The earlier assessment, before version 1.1. Compare the two.</p>
+                                    <label class="source-read"><input type="checkbox" data-check="extra-irregular-1"> Read</label>
+                                </li>
+                            </ul>
+                        </div>
+                    </article>
+
+                    <!-- Slide 38 -->
+                    <article class="note-article" id="across">
+                        <div class="note-body">
+                            <p class="note-meta">Slide 38 &middot; all three cases</p>
+                            <h3>Across the cases</h3>
+
+                            <p>Line the three accounts up and the structure repeats. A model ran with its safeguards off, a boundary that was supposed to hold did not, and a real system was affected. Two of the three ran through the same testing partner, Irregular, according to Axios and TechTimes.<a class="cite" href="#src-6" aria-label="Source 6">6</a><a class="cite" href="#src-11" aria-label="Source 11">11</a></p>
+
+                            <h4>What each lab says it changed</h4>
+                            <ul>
+                                <li>OpenAI cites tighter infrastructure controls, slower research until vulnerabilities are patched, and more monitoring during internal testing.<a class="cite" href="#src-1" aria-label="Source 1">1</a></li>
+                                <li>Anthropic paused external cyber evaluations, added a real-time classifier that stops attempts to leave the sandbox and alerts a human, and asked partners to use sandboxes with no internet.<a class="cite" href="#src-5" aria-label="Source 5">5</a></li>
+                                <li>Meta added independent checks of test-environment isolation and banned real company names in test scenarios.<a class="cite" href="#src-9" aria-label="Source 9">9</a></li>
+                            </ul>
+
+                            <h4>Stories the sources tell</h4>
+                            <ul>
+                                <li>A rogue-model story, in Fortune's headline and Yampolskiy's comments.<a class="cite" href="#src-4" aria-label="Source 4">4</a></li>
+                                <li>A containment-failure story, from Guido and Williams via Wikipedia,<a class="cite" href="#src-3" aria-label="Source 3">3</a> Axios's correction,<a class="cite" href="#src-6" aria-label="Source 6">6</a> Meta's own wording<a class="cite" href="#src-9" aria-label="Source 9">9</a> and TechTimes.<a class="cite" href="#src-11" aria-label="Source 11">11</a></li>
+                                <li>An alignment story, in Anthropic's own explanation of motivated reasoning and recklessness.<a class="cite" href="#src-5" aria-label="Source 5">5</a></li>
+                                <li>A policy story: Willison on defenders held back by guardrails,<a class="cite" href="#src-2" aria-label="Source 2">2</a> TechTimes on rules that exempt evaluations.<a class="cite" href="#src-11" aria-label="Source 11">11</a></li>
+                            </ul>
+
+                            <h4>Questions about incentives</h4>
+                            <ul>
+                                <li>Each lab wrote its own account. What does the word misconfiguration protect, and what does unprecedented protect?</li>
+                                <li>Rescana and CASRAI both sell something. Does it show in how they tell the story?</li>
+                                <li>The first outlet to publish tends to set the frame. Which frame did each incident get first?</li>
+                                <li>Hugging Face's CEO and OpenAI both speak on the same breach. Whose account of the damage would you trust more, and what would change your mind?</li>
+                            </ul>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 47 -->
+        <section id="ai-trends">
+            <div class="container">
+                <div class="section-inner">
+                    <h2 class="section-title section-title--coral">Impact of AI</h2>
+
+                    <article class="note-article" id="impact">
+                        <div class="note-body">
+                            <p class="note-meta">Slide 47 &middot; 2025 to 2026 reports</p>
+                            <h3>What AI changed, and how it is used</h3>
+
+                            <p>If you only have time for two of these sources, read CrowdStrike's podcast page and ENISA's 2026 report. One is a security vendor and the other an EU agency, and comparing how they talk about AI says something about incentives.<a class="cite" href="#src-14" aria-label="Source 14">14</a><a class="cite" href="#src-19" aria-label="Source 19">19</a></p>
+
+                            <h4>Trends the reports attribute to AI</h4>
+                            <ul>
+                                <li>Speed. CrowdStrike says average eCrime breakout time fell to 29 minutes, the fastest it saw was 27 seconds, and attacks by AI-enabled adversaries rose 89% year on year.<a class="cite" href="#src-14" aria-label="Source 14">14</a></li>
+                                <li>Spread across the attack. Verizon counts 15 distinct attack techniques now boosted by generative AI.<a class="cite" href="#src-12" aria-label="Source 12">12</a> Delinea's reading of the DBIR puts phishing first among AI-assisted attacks, at 44%.<a class="cite" href="#src-13" aria-label="Source 13">13</a></li>
+                                <li>Vulnerabilities. IBM saw a 44% rise in attacks that began with exploiting a public-facing application and ties it partly to AI-assisted discovery of weaknesses.<a class="cite" href="#src-15" aria-label="Source 15">15</a> Google describes a cybercrime group that used AI to find and weaponize a zero-day.<a class="cite" href="#src-16" aria-label="Source 16">16</a></li>
+                                <li>Fake AI and copied AI. ENISA 2026 cites a fake Claude website used to spread malware.<a class="cite" href="#src-19" aria-label="Source 19">19</a> Anthropic's September report accuses Chinese labs, Moonshot and DeepSeek among them, of copying its models.<a class="cite" href="#src-21" aria-label="Source 21">21</a></li>
+                                <li>Inside the company. Delinea's write-up says regular AI use by employees rose from 15% to 45%, and 67% of users reach AI services through non-corporate accounts on work devices.<a class="cite" href="#src-13" aria-label="Source 13">13</a></li>
+                                <li>Opinion. In the World Economic Forum's survey, 94% of leaders expect AI to be the biggest force shaping cybersecurity in 2026, and 87% saw AI-related vulnerabilities as the fastest-growing risk.<a class="cite" href="#src-20" aria-label="Source 20">20</a></li>
+                            </ul>
+
+                            <h4>Where the sources disagree</h4>
+                            <p>Not every source calls AI a step change. A news summary of Google's February report says AI had so far been an efficiency multiplier, not a breakthrough,<a class="cite" href="#src-18" aria-label="Source 18">18</a> while Google's May report talks about industrial-scale use of generative models.<a class="cite" href="#src-16" aria-label="Source 16">16</a></p>
+                            <p>Most of the numbers come from vendors that also sell defences. ENISA and the WEF are the two exceptions in this list. ENISA also says how it used AI itself: in a limited way to collect and process data, with no AI-generated content in the report.<a class="cite" href="#src-19" aria-label="Source 19">19</a></p>
+
+                            <h4>Check while you read</h4>
+                            <ul>
+                                <li>For each number, who measured it: the vendor's own telemetry, a survey, or investigated cases?</li>
+                                <li>Does the source separate AI-assisted from AI-caused?</li>
+                                <li>Pick one number you would not repeat without knowing its denominator.</li>
+                            </ul>
+                        </div>
+
+                        <div class="note-sources">
+                            <h4>Sources <span class="note-count" data-article-progress></span></h4>
+                            <ul class="source-list">
+                                <li class="source" id="src-12">
+                                    <div class="source-top"><span class="source-num">12</span><span class="tag">Report</span></div>
+                                    <a class="source-title" href="https://www.verizon.com/business/resources/reports/dbir/" target="_blank" rel="noopener">Verizon: 2026 Data Breach Investigations Report</a>
+                                    <p class="source-note">The landing page has the headline numbers, including the 15 techniques. The full report may ask for a form.</p>
+                                    <label class="source-read"><input type="checkbox" data-check="src-12" data-core> Read</label>
+                                </li>
+                                <li class="source" id="src-13">
+                                    <div class="source-top"><span class="source-num">13</span><span class="tag">Vendor blog</span></div>
+                                    <a class="source-title" href="https://delinea.com/blog/2026-verizon-dbir-cybersecurity-fundamentals-still-matter" target="_blank" rel="noopener">Delinea: 2026 Verizon DBIR, why cybersecurity fundamentals still matter</a>
+                                    <p class="source-note">A vendor's reading of the DBIR. The source of the 44% and the shadow-AI figures, so check them against Verizon.</p>
+                                    <label class="source-read"><input type="checkbox" data-check="src-13" data-core> Read</label>
+                                </li>
+                                <li class="source" id="src-14">
+                                    <div class="source-top"><span class="source-num">14</span><span class="tag">Company</span></div>
+                                    <a class="source-title" href="https://crowdstrike.podbean.com/e/speed-stealth-and-ai-the-crowdstrike-2026-global-threat-report" target="_blank" rel="noopener">Speed, Stealth, and AI: The CrowdStrike 2026 Global Threat Report</a>
+                                    <p class="source-note">A page from the vendor's own podcast, not the full report.</p>
+                                    <label class="source-read"><input type="checkbox" data-check="src-14" data-core> Read</label>
+                                </li>
+                                <li class="source" id="src-15">
+                                    <div class="source-top"><span class="source-num">15</span><span class="tag">Company</span></div>
+                                    <a class="source-title" href="https://uk.newsroom.ibm.com/ibm-2026-x-force-threat-index" target="_blank" rel="noopener">IBM 2026 X-Force Threat Index: AI-Driven Attacks are Escalating as Basic Security Gaps Leave Enterprises Exposed</a>
+                                    <p class="source-note">A press release for the index. Short, with headline numbers only.</p>
+                                    <label class="source-read"><input type="checkbox" data-check="src-15" data-core> Read</label>
+                                </li>
+                                <li class="source" id="src-16">
+                                    <div class="source-top"><span class="source-num">16</span><span class="tag">Company</span></div>
+                                    <a class="source-title" href="https://cloud.google.com/blog/topics/threat-intelligence/ai-vulnerability-exploitation-initial-access" target="_blank" rel="noopener">GTIG AI Threat Tracker: Adversaries Leverage AI for Vulnerability Exploitation, Augmented Operations, and Initial Access</a>
+                                    <p class="source-note">Google's May 2026 tracker. Compare its tone with the February one.</p>
+                                    <label class="source-read"><input type="checkbox" data-check="src-16" data-core> Read</label>
+                                </li>
+                                <li class="source" id="src-17">
+                                    <div class="source-top"><span class="source-num">17</span><span class="tag">Company</span></div>
+                                    <a class="source-title" href="https://cloud.google.com/blog/topics/threat-intelligence/distillation-experimentation-integration-ai-adversarial-use" target="_blank" rel="noopener">GTIG AI Threat Tracker: Distillation, Experimentation, and (Continued) Integration of AI for Adversarial Use</a>
+                                    <p class="source-note">Google's February 2026 tracker, the one source 18 summarizes.</p>
+                                    <label class="source-read"><input type="checkbox" data-check="src-17" data-core> Read</label>
+                                </li>
+                                <li class="source" id="src-18">
+                                    <div class="source-top"><span class="source-num">18</span><span class="tag">News</span></div>
+                                    <a class="source-title" href="https://www.crowdfundinsider.com/2026/02/262779-google-threat-intelligence-report-highlights-growing-adversarial-exploitation-of-ai/" target="_blank" rel="noopener">Google Threat Intelligence Report Highlights Growing Adversarial Exploitation of AI</a>
+                                    <p class="source-note">Where the efficiency multiplier line comes from. It summarizes source 17, so read 17 too.</p>
+                                    <label class="source-read"><input type="checkbox" data-check="src-18" data-core> Read</label>
+                                </li>
+                                <li class="source" id="src-19">
+                                    <div class="source-top"><span class="source-num">19</span><span class="tag">Agency report</span></div>
+                                    <a class="source-title" href="https://www.enisa.europa.eu/sites/default/files/2026-09/ENISA%20Threat%20Landscape%202026_Final.pdf" target="_blank" rel="noopener">ENISA Threat Landscape 2026</a>
+                                    <p class="source-note">An EU agency, not a vendor. The methodology section states its own use of AI.</p>
+                                    <label class="source-read"><input type="checkbox" data-check="src-19" data-core> Read</label>
+                                </li>
+                                <li class="source" id="src-20">
+                                    <div class="source-top"><span class="source-num">20</span><span class="tag">Press release</span></div>
+                                    <a class="source-title" href="https://www.weforum.org/press/2026/01/cyber-enabled-fraud-is-now-one-of-the-most-pervasive-global-threats-says-new-report-45dc3f679b/" target="_blank" rel="noopener">Cyber-enabled fraud is now one of the most pervasive global threats, says new report</a>
+                                    <p class="source-note">Survey-based, so the percentages are opinions, not incident counts.</p>
+                                    <label class="source-read"><input type="checkbox" data-check="src-20" data-core> Read</label>
+                                </li>
+                                <li class="source" id="src-21">
+                                    <div class="source-top"><span class="source-num">21</span><span class="tag">News</span></div>
+                                    <a class="source-title" href="https://thenextweb.com/news/anthropic-claude-misuse-threat-intelligence-report" target="_blank" rel="noopener">Anthropic details how Claude was misused for surveillance and weapons</a>
+                                    <p class="source-note">Coverage of Anthropic's 10 September report. The accusations are Anthropic's, so look for the primary report too.</p>
+                                    <label class="source-read"><input type="checkbox" data-check="src-21" data-core> Read</label>
+                                </li>
+                            </ul>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- The reminder -->
+        <section id="write">
+            <div class="container">
+                <div class="section-inner">
+                    <h2 class="section-title section-title--apricot">Before you write</h2>
+
+                    <article class="note-article" id="reminder">
+                        <div class="note-body">
+                            <p>The minipaper is judged on what you tried and learned, not on what the tools produced. Bullets are fine if they have structure. Do not paste tool output. One of your minipapers will come up at the exam.</p>
+
+                            <h4>Marked slides</h4>
+                            <p>Tick a slide once you could answer its prompts in a couple of bullets without looking.</p>
+                            <ul class="ready-list">
+                                <li><label><input type="checkbox" data-check="ready-35"><span>Slide 35, OpenAI and Hugging Face: what happened, how the interpretations differ, the outside views, the takeaways.</span></label></li>
+                                <li><label><input type="checkbox" data-check="ready-36"><span>Slide 36, Anthropic and Claude: the same four prompts.</span></label></li>
+                                <li><label><input type="checkbox" data-check="ready-37"><span>Slide 37, Meta Muse Spark and Irregular: the same four prompts.</span></label></li>
+                                <li><label><input type="checkbox" data-check="ready-38"><span>Slide 38, broader discussion: the takeaways across the cases, the narratives, the incentives.</span></label></li>
+                                <li><label><input type="checkbox" data-check="ready-47"><span>Slide 47, impact of AI: which trends look AI-driven, and how AI is being used.</span></label></li>
+                            </ul>
+
+                            <h4>Your three questions</h4>
+                            <p>These come straight from the assignment. Jot a few bullets under each as you go. They stay in this browser and nowhere else.</p>
+
+                            <div class="question-box">
+                                <label for="note-search">How did you search for information?</label>
+                                <p class="question-hint">Which tool did you start with, and which query produced the first useful page? What did you change when a query went wrong?</p>
+                                <textarea id="note-search" data-note="search" data-label="How did you search for information?" rows="5"></textarea>
+                            </div>
+                            <div class="question-box">
+                                <label for="note-difference">What was different when you changed technique, model or source?</label>
+                                <p class="question-hint">Ask one question in two tools, or check one fact against a company post, a news article and a wiki page. Where did they disagree?</p>
+                                <textarea id="note-difference" data-note="difference" data-label="What was different when you changed technique, model or source?" rows="5"></textarea>
+                            </div>
+                            <div class="question-box">
+                                <label for="note-compare">How did they compare on content, quality, depth and speed?</label>
+                                <p class="question-hint">Which results could you verify? Which was fastest, and was fast good enough?</p>
+                                <textarea id="note-compare" data-note="compare" data-label="How did they compare on content, quality, depth and speed?" rows="5"></textarea>
+                            </div>
+
+                            <div class="notes-actions">
+                                <button type="button" class="btn btn-secondary" id="copy-notes">Copy my notes</button>
+                                <button type="button" class="btn btn-secondary" id="download-notes">Download notes (.md)</button>
+                                <span class="notes-status" id="copy-status" role="status"></span>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <p>&copy; 2026 Irakoze Darlo. All rights reserved.</p>
+                <div class="social-links">
+                    <a href="https://github.com/massirr" aria-label="GitHub" target="_blank" rel="noopener">
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12" /></svg>
+                    </a>
+                    <a href="https://www.linkedin.com/in/irakoze-darlo-2492162b5" aria-label="LinkedIn" target="_blank" rel="noopener">
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" /></svg>
+                    </a>
+                    <a href="mailto:irakoze.darlo@outlook.com" aria-label="Email">
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 5.5A2.5 2.5 0 0 1 4.5 3h15A2.5 2.5 0 0 1 22 5.5v13a2.5 2.5 0 0 1-2.5 2.5h-15A2.5 2.5 0 0 1 2 18.5v-13Zm2.2.3 7.8 6.1 7.8-6.1a1 1 0 0 0-.3-.05h-15c-.1 0-.2.02-.3.05Zm-.2 1.55V18.5c0 .28.22.5.5.5h15a.5.5 0 0 0 .5-.5V7.35l-7.69 6.02a1 1 0 0 1-1.23 0L4 7.35Z" /></svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="notes.js"></script>
+</body>
+</html>

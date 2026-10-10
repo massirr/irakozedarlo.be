@@ -15,7 +15,7 @@ framework, no dependencies.
   boxes). Deliberately `noindex`, not linked from the portfolio and not in
   `sitemap.xml`. Uses `../styles.css` plus `notes/notes.css` (layout only,
   same hard-shadow rules) and `notes/notes.js` (read-ticks and note text in
-  localStorage, copy-notes button). Add a link from `index.html` or a
+  localStorage, copy and download-as-.md buttons, hamburger page menu). Add a link from `index.html` or a
   sitemap entry only if the owner asks.
 - `assets/Irakoze-Darlo-CV.pdf` — downloadable CV, linked from the resume
   card in the Contact section (`.contact-resume`). Replace this file in

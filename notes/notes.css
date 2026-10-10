@@ -16,6 +16,111 @@ a.nav-brand {
     display: inline-block;
 }
 
+.nav-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-width: 0;
+}
+
+/* Menu button: flat, 2px ink border, square */
+.menu-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 0.3rem 0.65rem;
+    background: #fff;
+    border: var(--border-hard);
+    border-radius: 0;
+    color: var(--ink);
+    font: inherit;
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    cursor: pointer;
+    transition: background-color 0.18s ease, color 0.18s ease;
+}
+
+.menu-toggle svg {
+    width: 18px;
+    height: 18px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2.5;
+    stroke-linecap: square;
+}
+
+.menu-toggle:hover,
+.menu-toggle[aria-expanded="true"] {
+    background: var(--ink);
+    color: var(--paper-strong);
+}
+
+.menu-toggle:focus-visible,
+.page-menu a:focus-visible {
+    outline: 2px solid var(--ink);
+    outline-offset: 2px;
+}
+
+/* Dropdown panel: the one shadowed surface in the header */
+.page-menu {
+    position: absolute;
+    top: calc(100% + 10px);
+    left: 24px;
+    width: min(340px, calc(100vw - 24px));
+    max-height: calc(100vh - 90px);
+    overflow-y: auto;
+    padding: 0.75rem;
+    background: var(--surface);
+    border: var(--border-hard);
+    box-shadow: var(--shadow-sm);
+}
+
+.page-menu[hidden] {
+    display: none;
+}
+
+.page-menu a {
+    display: flex;
+    gap: 0.75rem;
+    padding: 0.5rem 0.6rem;
+    color: var(--ink);
+    font-weight: 650;
+    text-decoration: none;
+    overflow-wrap: anywhere;
+}
+
+.page-menu a span {
+    flex: none;
+    min-width: 1.8rem;
+    padding: 0 0.3rem;
+    background: var(--paper-strong);
+    font-weight: 800;
+    text-align: center;
+}
+
+.page-menu a:hover,
+.page-menu a.active {
+    background: var(--ink);
+    color: var(--paper-strong);
+}
+
+.page-menu a.active span,
+.page-menu a:hover span {
+    background: var(--paper-strong);
+    color: var(--ink);
+}
+
+.page-menu-label {
+    margin: 0.6rem 0.6rem 0.2rem;
+    font-size: 0.75rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--ink-soft);
+}
+
 /* Hero panel */
 .notes-hero .section-inner > * + * {
     margin-top: 1rem;
@@ -334,6 +439,10 @@ a.nav-brand {
 }
 
 @media (max-width: 720px) {
+    .page-menu {
+        left: 12px;
+    }
+
     main section {
         padding: 1.75rem 0;
     }

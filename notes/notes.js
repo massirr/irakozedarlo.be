@@ -92,15 +92,69 @@
         });
     }
 
-    // Highlight the nav link for the section in view
-    var links = document.querySelectorAll('.nav-menu a[href^="#"]');
-    var sections = Array.prototype.slice.call(links).map(function (l) {
-        return document.querySelector(l.getAttribute('href'));
-    });
+    // Download notes as Markdown
+    var dlBtn = document.getElementById('download-notes');
+    if (dlBtn) {
+        dlBtn.addEventListener('click', function () {
+            var parts = areas
+                .filter(function (a) { return a.value.trim(); })
+                .map(function (a) { return '## ' + a.getAttribute('data-label') + '\n\n' + a.value.trim(); });
+            if (!parts.length) {
+                if (status) status.textContent = 'Nothing to download yet.';
+                return;
+            }
+            var day = new Date().toISOString().slice(0, 10);
+            var text = '# Class 1 notes, Hacking AI Systems\n\nSaved ' + day + '\n\n' + parts.join('\n\n') + '\n';
+            var blob = new Blob([text], { type: 'text/markdown;charset=utf-8' });
+            var url = URL.createObjectURL(blob);
+            var a = document.createElement('a');
+            a.href = url;
+            a.download = 'class-1-notes-' + day + '.md';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            setTimeout(function () { URL.revokeObjectURL(url); }, 1000);
+            if (status) status.textContent = 'Downloaded.';
+        });
+    }
+
+    // Page menu (hamburger): open, close, highlight the page in view
+    var toggle = document.getElementById('menu-toggle');
+    var menu = document.getElementById('page-menu');
+    var links = menu ? Array.prototype.slice.call(menu.querySelectorAll('a[href^="#"]')) : [];
+    var targets = links.map(function (l) { return document.querySelector(l.getAttribute('href')); });
+
+    function setMenu(open) {
+        if (!menu || !toggle) return;
+        menu.hidden = !open;
+        toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    }
+
+    if (toggle && menu) {
+        toggle.addEventListener('click', function (e) {
+            e.stopPropagation();
+            setMenu(menu.hidden);
+        });
+        menu.addEventListener('click', function (e) {
+            if (e.target.closest('a')) setMenu(false);
+        });
+        document.addEventListener('click', function (e) {
+            if (!menu.hidden && !menu.contains(e.target)) setMenu(false);
+        });
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape' && !menu.hidden) {
+                setMenu(false);
+                toggle.focus();
+            }
+        });
+    }
+
     function onScroll() {
         var y = window.scrollY + 120;
         var current = null;
-        sections.forEach(function (s) { if (s && s.offsetTop <= y) current = s.id; });
+        targets.forEach(function (t) {
+            if (t && t.getBoundingClientRect().top + window.scrollY <= y) current = t.id;
+        });
         links.forEach(function (l) {
             l.classList.toggle('active', l.getAttribute('href') === '#' + current);
         });

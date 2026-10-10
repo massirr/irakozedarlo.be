@@ -218,11 +218,11 @@ h1, h2, h3, h4 {
 /* ==========================================================================
    Page menu (hamburger) — shared by the portfolio and the notes page
    ========================================================================== */
-.nav-left {
+.nav-right {
     display: flex;
     align-items: center;
-    gap: 12px;
-    min-width: 0;
+    gap: 16px;
+    flex-shrink: 0;
 }
 
 /* Menu button: flat, 2px ink border, square */
@@ -230,11 +230,11 @@ h1, h2, h3, h4 {
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    padding: 0.3rem 0.65rem;
-    background: #fff;
+    padding: 0.4rem 0.75rem;
+    background: var(--ink);
     border: var(--border-hard);
     border-radius: 0;
-    color: var(--ink);
+    color: var(--paper-strong);
     font: inherit;
     font-size: 0.8rem;
     font-weight: 700;
@@ -255,8 +255,8 @@ h1, h2, h3, h4 {
 
 .menu-toggle:hover,
 .menu-toggle[aria-expanded="true"] {
-    background: var(--ink);
-    color: var(--paper-strong);
+    background: var(--paper-strong);
+    color: var(--ink);
 }
 
 .menu-toggle:focus-visible,
@@ -269,7 +269,7 @@ h1, h2, h3, h4 {
 .page-menu {
     position: absolute;
     top: calc(100% + 10px);
-    left: 24px;
+    right: 24px;
     width: min(340px, calc(100vw - 24px));
     max-height: calc(100vh - 90px);
     overflow-y: auto;
@@ -325,7 +325,18 @@ h1, h2, h3, h4 {
 
 @media (max-width: 720px) {
     .page-menu {
-        left: 12px;
+        right: 12px;
+    }
+}
+
+/* Very narrow phones: keep the bars, drop the word so the header never wraps */
+@media (max-width: 380px) {
+    .menu-toggle span {
+        display: none;
+    }
+
+    .nav-right {
+        gap: 10px;
     }
 }
 

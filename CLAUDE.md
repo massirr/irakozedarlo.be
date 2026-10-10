@@ -10,7 +10,7 @@ framework, no dependencies.
 - `styles.css` — all styling; the design system lives here as CSS custom properties on `:root`
 - `script.js` — vanilla JS: smooth scroll, fade-in on scroll, active nav link
 - `menu.js` + the `.menu-toggle` / `.page-menu` rules in `styles.css` — shared
-  hamburger "Menu" button (top bar, both pages): opens a flat dropdown to pick
+  hamburger "Menu" button (far right of the top bar, after the icon links, both pages; labelled, solid ink): opens a flat dropdown to pick
   a page or section. On the portfolio it lists the sections plus a link to the
   study notes; on the notes page it lists the marked slides.
 - `notes/hacking-ai-systems-class-1.html` — reading-notes page for the
